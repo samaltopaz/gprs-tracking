@@ -33,8 +33,7 @@ function onDeviceReady() {
     // onSuccess Geolocation
     //
     function onSuccess(position) {
-      alert(position.coords.speed);
-      alert(position.timestamp);
+     
         var element = document.getElementById('geolocation');
         element.innerHTML = 'Latitude: '           + position.coords.latitude              + '<br />' +
                             'Longitude: '          + position.coords.longitude             + '<br />' +
