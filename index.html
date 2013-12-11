@@ -38,7 +38,7 @@ function initialize() {
     navigator.geolocation.getCurrentPosition(function(position) {
       var pos = new google.maps.LatLng(position.coords.latitude,
                                        position.coords.longitude);
-var lat=position.coords.latitude;
+var lat=position.coords.latitude.value;
 //alert(lat);
 $('#latitude_value').val(lat);
       //alert(position.coords.latitude);
