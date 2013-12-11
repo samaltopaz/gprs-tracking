@@ -12,9 +12,18 @@
 
     // Cordova is ready
     //
-    function onDeviceReady() {
-        navigator.geolocation.getCurrentPosition(onSuccess, onError);
+    //function onDeviceReady() {
+        //navigator.geolocation.getCurrentPosition(onSuccess, onError);
+    //}
+
+var watchID = null;
+
+function onDeviceReady() {
+        // Update every 1 seconds
+        var options = { frequency: 1000 };
+        watchID = navigator.geolocation.watchPosition(onSuccess, onError, options);
     }
+
 
     // onSuccess Geolocation
     //
