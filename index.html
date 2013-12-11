@@ -20,7 +20,7 @@ var watchID = null;
 
 function onDeviceReady() {
         // Update every 1 seconds
-        var options = { frequency: 1000 };
+        var options = { frequency: 1000, enableHighAccuracy: true };
         watchID = navigator.geolocation.watchPosition(onSuccess, onError, options);
         alert("fr");
     }
