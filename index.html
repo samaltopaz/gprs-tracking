@@ -22,12 +22,14 @@ function onDeviceReady() {
         // Update every 1 seconds
         var options = { frequency: 1000 };
         watchID = navigator.geolocation.watchPosition(onSuccess, onError, options);
+        alert("fr");
     }
 
 
     // onSuccess Geolocation
     //
     function onSuccess(position) {
+      alert(position.timestamp);
         var element = document.getElementById('geolocation');
         element.innerHTML = 'Latitude: '           + position.coords.latitude              + '<br />' +
                             'Longitude: '          + position.coords.longitude             + '<br />' +
