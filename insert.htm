@@ -1,0 +1,36 @@
+<html>
+<head>
+<title>TESTING</titel>
+<script type="text/javascript" charset="utf-8" src="cordova.js"></script>
+    <script type="text/javascript" charset="utf-8">
+$(document).ready(function(){
+ 
+    document.addEventListener("deviceready", onDeviceReady, false);
+     
+    var db = window.openDatabase("Database", "1.0", "MyContactsDB", 200000);
+ 
+    function onDeviceReady(){
+        //Populate the databse
+        db.transaction(populateDB, errorCB, successCB);
+        //Override the back button functionality
+        document.addEventListener('backbutton', onBack, false);
+        }
+    
+    
+    function populateDB(tx){
+        //Create the table
+         tx.executeSql('DROP TABLE IF EXISTS DEMO');
+    tx.executeSql('CREATE TABLE IF NOT EXISTS DEMO (id unique, data)');
+    tx.executeSql('INSERT INTO DEMO (id, data) VALUES (1, "First row")');
+    tx.executeSql('INSERT INTO DEMO (id, data) VALUES (2, "Second row")');
+}
+
+});
+
+</script>
+</head>
+  <body>
+    <p>Insert Data</p>
+  </body>
+</html>
+   
