@@ -1,0 +1,159 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<title>Imggallery</title>
+<link href="style.css"rel="stylesheet" type="text/css" />
+<script type="text/javascript" charset="utf-8" src="cordova.js"></script>
+<script type="text/javascript" src="jquery-1.9.1.min.js"></script>
+
+<script type="text/javascript" charset="utf-8">
+$(document).ready(function(){
+ 
+    document.addEventListener("deviceready", onDeviceReady, false);
+     
+    var db = window.openDatabase("Database", "1.0", "GpsdataDB", 200000);
+ 
+    function onDeviceReady(){
+        //Populate the databse
+        db.transaction(populateDB, errorCB, successCB);
+        //Override the back button functionality
+        document.addEventListener('backbutton', onBack, false);
+        }
+        
+        
+        function populateDB(tx){
+        //Create the table
+    //tx.executeSql('DROP TABLE IF EXISTS DETAILS');
+    tx.executeSql('CREATE TABLE IF NOT EXISTS DETAILS (id INTEGER PRIMARY KEY AUTOINCREMENT,location TEXT NOT NULL,start_time VARCHAR(20) NOT NULL,cycle_length VARCHAR(20) NOT NULL,arrival_open VARCHAR(20) NOT NULL,arrival_close VARCHAR(20) NOT NULL)');
+                               }
+                               
+     $("#save").bind ("click", function (event){
+     
+     var str="`location`='A',";
+         $( ".A" ).each(function() {
+              var x=$(this).val();
+              var nameval=$(this).attr('col_val');
+              str=str+"`"+nameval+"`="+x+",";
+             });
+     
+     str = str.substring(0, str.length - 1);
+     alert(str);
+     
+     
+     });
+      
+      
+      
+      
+</head>
+
+<body>
+	<div id="topbar">
+			<div id="top_box">
+					<h2 style="text-align:center; text-shadow:#000000 1px">
+					Arrival Time Demo App
+					</h2>	
+					<p class="text">
+							Edit Parameters <br /> Tap any Cell to Edit
+					</p>		
+			</div>
+	</div>
+	
+	
+	<div id="contentbar">
+			<div id="content_box">
+					<table id="table1" style="height:300px;">
+							<tr>
+									<td>
+											
+									</td>
+									<td align="center">
+											Location<br />
+											A
+
+									</td>
+									<td align="center">
+											Location<br />
+											B
+									</td>
+									<td align="center">
+											Location<br />
+											 C
+									</td>
+							</tr>
+							<tr>
+									<td>
+											Start Time
+									</td>
+									<td>
+											<input type="text" name="" col_val="start_time" class="textbox2 A" />
+									</td>
+									<td>
+											<input type="text" name="" col_val="start_time"  class="textbox2 B" />
+									</td>
+									<td>
+											<input type="text" name="" col_val="start_time" class="textbox2 C" />
+									</td>
+							</tr>
+							<tr>
+									<td>
+											Cycle Length
+									</td>
+									<td>
+											<input type="text" name="" col_val="cycle_length"  class="textbox2 A" />
+									</td>
+									<td>
+											<input type="text" name="" col_val="cycle_length"  class="textbox2 B" />
+									</td>
+									<td>
+											<input type="text" name="" col_val="cycle_length"  class="textbox2 C" />
+									</td>
+							</tr>
+							<tr>
+									<td>
+											Arrival Open
+									</td>
+									<td>
+											<input type="text" name="" col_val="arrival_open"  class="textbox2 A" />
+									</td>
+									<td>
+											<input type="text" name="" col_val="arrival_open"  class="textbox2 B" />
+									</td>
+									<td>
+											<input type="text" name="" col_val="arrival_open"  class="textbox2 C" />
+									</td>
+							</tr>
+							
+							<tr>
+									<td>
+											Arrival Close
+									</td>
+									<td>
+											<input type="text" name="" col_val="arrival_close"  class="textbox2 A" />
+									</td>
+									<td>
+											<input type="text" name=""  col_val="arrival_close" class="textbox2 B" />
+									</td>
+									<td>
+											<input type="text" name="" col_val="arrival_close" class="textbox2 C" />
+									</td>
+							</tr>
+							
+							<tr>
+									<td colspan="2">
+											<input type="button" value="Cancel" class="button" />
+									</td>
+									<td colspan="2">
+											<input type="button" value="Save Changes" class="button" id="save"/>
+									</td>
+									
+							</tr>
+					</table>
+			</div>
+	</div>
+</body>
+</html>
