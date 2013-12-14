@@ -20,12 +20,13 @@ $(document).ready(function(){
     function onDeviceReady(){
         //Populate the databse
         db.transaction(populateDB, errorCB, successCB);
-        //Override the back button functionality
-        document.addEventListener('backbutton', onBack, false);
+alert('ready');
         }
         
         
         function populateDB(tx){
+        	alert(1);
+        	
         //Create the table
     //tx.executeSql('DROP TABLE IF EXISTS DETAILS');
     tx.executeSql('CREATE TABLE IF NOT EXISTS DETAILS (id INTEGER PRIMARY KEY AUTOINCREMENT,location TEXT NOT NULL,start_time VARCHAR(20) NOT NULL,cycle_length VARCHAR(20) NOT NULL,arrival_open VARCHAR(20) NOT NULL,arrival_close VARCHAR(20) NOT NULL)');
