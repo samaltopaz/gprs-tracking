@@ -49,6 +49,7 @@ document.addEventListener("deviceready", onDeviceReady, false);
 
       
     });
+    alert(str);
      
       var str2="`location`='B'";
          $('.B').each(function(){
@@ -61,6 +62,7 @@ document.addEventListener("deviceready", onDeviceReady, false);
 
       
     });
+    alert(str2);
     
     var str3="`location`='C'";
          $('.C').each(function(){
@@ -73,6 +75,7 @@ document.addEventListener("deviceready", onDeviceReady, false);
 
       
     });
+    alert(str3);
      
           db.transaction(function (tx){ tx.executeSql("INSERT INTO gps str");
           tx.executeSql("INSERT INTO gps str2");
