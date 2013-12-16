@@ -11,12 +11,18 @@ $(document).ready(function(){
   $("#save").click(function(){
     $(".textbox2 A").each(function(){
       var loca=$(this).val();
+      alert(1);
+      alert(loca);
     });
     $(".textbox2 B").each(function(){
       var locb=$(this).val();
+      alert(2);
+      alert(locb);
     });
     $(".textbox2 C").each(function(){
       var locc=$(this).val();
+      alert(3);
+      alert(locc);
     });
   });
 });
@@ -124,7 +130,7 @@ $(document).ready(function(){
 											<input type="button" value="Cancel" class="" />
 									</td>
 									<td colspan="2">
-											<input type="button" value="Save Changes" class="" id="save" onclick="add()"/>
+											<input type="button" value="Save Changes" class="" id="save"/>
 									</td>
 									
 							</tr>
