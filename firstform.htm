@@ -21,8 +21,30 @@ $(document).ready(function(){
       
     });
      alert(str);
-    
+      var str="`location`='B'";
+         $('.B').each(function(){
+          
+      var locb=($(this).val());
+      var y=($(this).attr('col_val'));
       
+      str+= str +"`"+y+"`='"+locb+"'";
+   
+
+      
+    });
+    alert(str);
+    var str="`location`='C'";
+         $('.c').each(function(){
+          
+      var locc=($(this).val());
+      var y=($(this).attr('col_val'));
+      
+      str+= str +"`"+y+"`='"+locc+"'";
+   
+
+      
+    });
+      alert(str);
        // alert(loca);
         //alert(locb);
         
