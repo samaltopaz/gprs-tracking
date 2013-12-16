@@ -10,7 +10,13 @@
 $(document).ready(function(){
   $("#save").click(function(){
     $(".textbox2 A").each(function(){
-      alert($(this).val())
+      var loca=$(this).val();
+    });
+    $(".textbox2 B").each(function(){
+      var locb=$(this).val();
+    });
+    $(".textbox2 C").each(function(){
+      var locc=$(this).val();
     });
   });
 });
