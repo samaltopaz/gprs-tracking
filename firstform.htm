@@ -8,11 +8,20 @@
 <script type="text/javascript" src="jquery-1.9.1.min.js"></script>
 <script type="text/javascript">
 
-  funtion add()
-  {
-  	alert(1);
-  	
-  }
+ $("#save").bind ("click", function (event){
+        var loca = $.trim($(".A").val());
+        var locb = $.trim($(".B").val());
+        var locc = $.trim($(".C").val());
+        alert(1);
+        alert(loca);
+        alert(locb);
+        alert(locc);
+ });
+        //var workPhoneNumber = $.trim($("#workPhoneNumber").val()).replace(/[^0-9-]/g, '');
+        //var emailId = $.trim($("#emailId").val());
+        //var website = $.trim($("#website").val());
+        //var happyBirthDay = $.trim($("#happyBirthDay").val());
+        //console.log(name+' '+nickName+' '+mobilePhoneNumber+' '+workPhone
 
 </script>
 
@@ -118,7 +127,7 @@
 											<input type="button" value="Cancel" class="" />
 									</td>
 									<td colspan="2">
-											<input type="button" value="Save Changes" class="" id="save" onclick="add()"/>
+											<input type="button" value="Save Changes" class="" id="save"/>
 									</td>
 									
 							</tr>
