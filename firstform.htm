@@ -9,9 +9,12 @@
 <script type="text/javascript">
 
  $("#save").bind ("click", function (event){
-        var loca = $.trim($(".A").val());
-        var locb = $.trim($(".B").val());
-        var locc = $.trim($(".C").val());
+        //var loca = $.trim($(".A").val());
+        //var locb = $.trim($(".B").val());
+         $('.A').each(function(){
+         	alert(2);
+      alert($(this).val())
+    });
         alert(1);
         alert(loca);
         alert(locb);
