@@ -9,16 +9,19 @@
 <script type="text/javascript">
 $(document).ready(function(){
  $("#save").bind ("click", function (event){
-      var str='location=A';
+      var str="`location`='A'";
          $('.A').each(function(){
           
       var loca=($(this).val());
       var y=($(this).attr('col_val'));
+      
+      str+= str + 'y=loca';
+    alert(str);
+      alert(1);
+      
     });
     
-    str= str + '+y+'='+loca+';
-    alert(str);
-      alert(1);  
+      
        // alert(loca);
         //alert(locb);
         
