@@ -28,6 +28,8 @@ document.addEventListener("deviceready", onDeviceReady, false);
   
 	
  $("#save").bind ("click", function (event){
+     
+     
       var str="`location`='A'";
          $('.A').each(function(){
           
@@ -37,9 +39,11 @@ document.addEventListener("deviceready", onDeviceReady, false);
       str= str +",`"+y+"`='"+loca+"'";
    
 
-      
-    });
+		  
+    		});
     alert(str);
+     
+     
      
       var str2="`location`='B'";
          $('.B').each(function(){
@@ -51,7 +55,7 @@ document.addEventListener("deviceready", onDeviceReady, false);
    
 
       
-    });
+    		});
     alert(str2);
     
     var str3="`location`='C'";
@@ -64,15 +68,16 @@ document.addEventListener("deviceready", onDeviceReady, false);
    
 
       
-    });
+		 });
     alert(str3);
      
-          db.transaction(function (tx){ 
-          	alert("INSERT INTO gps"+str);
-          tx.executeSql("INSERT INTO gps "+str);
-          tx.executeSql("INSERT INTO gps "+ str2);
-          tx.executeSql("INSERT INTO gps "+ str3);
-          });
+     
+	          db.transaction(function (tx){ 
+	          	alert("INSERT INTO gps"+str);
+	          tx.executeSql("INSERT INTO gps "+str);
+	          tx.executeSql("INSERT INTO gps "+ str2);
+	          tx.executeSql("INSERT INTO gps "+ str3);
+	          });
           
           
           
@@ -99,14 +104,17 @@ document.addEventListener("deviceready", onDeviceReady, false);
             var row= results.rows.item(i);
             var htmlData = '<li id="'+row["id"]+'"><a href="#"><h2>'+row["start_time"]+'</h2><p class="ui-li-aside">'+row["cycle_length"]+'</p></a></li>';
             $("#userList").append(htmlData);
-        }
+        	}
     }
+    
+    
+    
     function errorCB(){
     	
     alert('1');	
     	
     }
-    }
+    
      
  
 });
