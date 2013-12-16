@@ -8,6 +8,35 @@
 <script type="text/javascript" src="jquery-1.9.1.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
+document.addEventListener("deviceready", onDeviceReady, false);
+     
+    var db = window.openDatabase("Database", "1.0", "gps", 200000);
+ 
+    function onDeviceReady(){
+        //Populate the databse
+        db.transaction(populateDB, errorCB, successCB);
+        
+        
+    }
+    
+    function populateDB(tx){
+        //Create the table
+        //tx.executeSql('DROP TABLE IF EXISTS MyContacts');
+        tx.executeSql('CREATE TABLE IF NOT EXISTS MyContacts (id INTEGER PRIMARY KEY AUTOINCREMENT, \
+                location VARCHAR(30) NOT NULL, start_time VARCHAR(30) NOT NULL, cycle_length VARCHAR(30) NOT NULL, \
+                arrival_open VARCHAR(30) NOT NULL, arrival_close VARCHAR(30) NOT NULL)\
+                 ');
+        
+    }
+    
+    function successCB(){
+        alert("sussess");
+    }
+     
+    function errorCB(){
+        alert("not success");
+    }
+	
  $("#save").bind ("click", function (event){
       var str="`location`='A'";
          $('.A').each(function(){
@@ -15,36 +44,45 @@ $(document).ready(function(){
       var loca=($(this).val());
       var y=($(this).attr('col_val'));
       
-      str= str +"`"+y+"`='"+loca+"'";
+      str= str +",`"+y+"`='"+loca+"'";
    
 
       
     });
-     alert(str);
+     
       var str2="`location`='B'";
          $('.B').each(function(){
           
       var locb=($(this).val());
       var yb=($(this).attr('col_val'));
       
-      str2= str2 +"`"+yb+"`='"+locb+"'";
+      str2= str2 +",`"+yb+"`='"+locb+"'";
    
 
       
     });
-    alert(str2);
+    
     var str3="`location`='C'";
          $('.C').each(function(){
           
       var locc=($(this).val());
       var yc=($(this).attr('col_val'));
       
-      str3= str3 +"`"+yc+"`='"+locc+"'";
+      str3= str3 +",`"+yc+"`='"+locc+"'";
    
 
       
     });
-      alert(str3);
+     
+          db.transaction(function (tx){ tx.executeSql("INSERT INTO gps str");
+          tx.executeSql("INSERT INTO gps str2");
+          tx.executeSql("INSERT INTO gps str3");
+          });
+          db.transaction(queryDB, errorCB);
+          
+          
+          
+          
        // alert(loca);
         //alert(locb);
         
@@ -52,6 +90,23 @@ $(document).ready(function(){
         
         //alert(locc);
  });
+ 
+ 
+ function queryDB(tx){
+        tx.executeSql('SELECT start_time, cycle_length  FROM gps ORDER BY location', [], querySuccess, errorCB);
+    }
+ 
+    function querySuccess(tx, results){
+        $.mobile.showPageLoadingMsg(true);
+        var len = results.rows.length;
+        $("#userList").html('');
+        for (var i=0; i<len; i++){
+            var row= results.rows.item(i);
+            var htmlData = '<li id="'+row["id"]+'"><a href="#"><h2>'+row["start_time"]+'</h2><p class="ui-li-aside">'+row["cycle_length"]+'</p></a></li>';
+            $("#userList").append(htmlData);
+        }
+     
+ 
 });
         //var workPhoneNumber = $.trim($("#workPhoneNumber").val()).replace(/[^0-9-]/g, '');
         //var emailId = $.trim($("#emailId").val());
@@ -168,6 +223,11 @@ $(document).ready(function(){
 									
 							</tr>
 					</table>
+				
+				<div id="userList">
+					
+					
+				</div>
 					
 			</div>
 	</div>
