@@ -68,7 +68,7 @@ document.addEventListener("deviceready", onDeviceReady, false);
     alert(str3);
      
           db.transaction(function (tx){ 
-          	alert("INSERT INTO gps str");
+          	alert("INSERT INTO gps"+str);
           tx.executeSql("INSERT INTO gps "+str);
           tx.executeSql("INSERT INTO gps "+ str2);
           tx.executeSql("INSERT INTO gps "+ str3);
@@ -100,6 +100,12 @@ document.addEventListener("deviceready", onDeviceReady, false);
             var htmlData = '<li id="'+row["id"]+'"><a href="#"><h2>'+row["start_time"]+'</h2><p class="ui-li-aside">'+row["cycle_length"]+'</p></a></li>';
             $("#userList").append(htmlData);
         }
+    }
+    function errorCB{
+    	
+    alert('1');	
+    	
+    }
     }
      
  
