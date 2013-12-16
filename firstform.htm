@@ -32,14 +32,37 @@ alert('ready');
      $("#save").bind ("click", function (event){
      
      var str="`location`='A',";
+     var str1="`location`='B',";
+     var str2="`location`='C',";
          $( ".A" ).each(function() {
               var x=$(this).val();
               var nameval=$(this).attr('col_val');
               str=str+"`"+nameval+"`="+x+",";
              });
+             
+             
+              $( ".B" ).each(function() {
+              var x1=$(this).val();
+              var nameval1=$(this).attr('col_val');
+              str1=str1+"`"+nameval1+"`="+x1+",";
+             });
+             
+             
+             
+              $( ".C" ).each(function() {
+              var x2=$(this).val();
+              var nameval2=$(this).attr('col_val');
+              str2=str2+"`"+nameval2+"`="+x2+",";
+             });
      
      str = str.substring(0, str.length - 1);
-     alert(str);
+  
+     str1= str1.substring(0, str1.length - 1);
+     
+      str2= str1.substring(0, str2.length - 1);
+     
+     
+
      
      
      });
