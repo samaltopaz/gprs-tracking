@@ -22,7 +22,7 @@ document.addEventListener("deviceready", onDeviceReady, false);
     function populateDB(tx){
         //Create the table
         //tx.executeSql('DROP TABLE IF EXISTS MyContacts');
-        tx.executeSql('CREATE TABLE IF NOT EXISTS MyContacts (id INTEGER PRIMARY KEY AUTOINCREMENT, location VARCHAR(30) NOT NULL, start_time VARCHAR(30) NOT NULL, cycle_length VARCHAR(30) NOT NULL,arrival_open VARCHAR(30) NOT NULL, arrival_close VARCHAR(30) NOT NULL)');
+        tx.executeSql('CREATE TABLE IF NOT EXISTS gps (id INTEGER PRIMARY KEY AUTOINCREMENT, location VARCHAR(30) NOT NULL, start_time VARCHAR(30) NOT NULL, cycle_length VARCHAR(30) NOT NULL,arrival_open VARCHAR(30) NOT NULL, arrival_close VARCHAR(30) NOT NULL)');
         
     }
   
@@ -73,7 +73,7 @@ document.addEventListener("deviceready", onDeviceReady, false);
      
      
 	          db.transaction(function (tx){ 
-	          	alert("INSERT INTO gps"+str);
+	          	alert("INSERT INTO gps "+str);
 	          tx.executeSql("INSERT INTO gps "+str);
 	          tx.executeSql("INSERT INTO gps "+ str2);
 	          tx.executeSql("INSERT INTO gps "+ str3);
