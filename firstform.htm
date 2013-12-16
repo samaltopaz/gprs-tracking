@@ -34,10 +34,12 @@ alert('ready');
      var str="`location`='A',";
      var str1="`location`='B',";
      var str2="`location`='C',";
+     
          $( ".A" ).each(function() {
               var x=$(this).val();
               var nameval=$(this).attr('col_val');
               str=str+"`"+nameval+"`="+x+",";
+              
              });
              
              
@@ -61,7 +63,7 @@ alert('ready');
      
       str2= str1.substring(0, str2.length - 1);
      
-     
+ 
 
      
      
