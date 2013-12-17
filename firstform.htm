@@ -10,7 +10,7 @@
 $(document).ready(function(){
 document.addEventListener("deviceready", onDeviceReady, false);
      
-    var db = window.openDatabase("Database", "1.0", "gps", 200000);
+    var db = window.openDatabase("Database", "1.0", "DEMO", 200000);
  
     function onDeviceReady(){
         //Populate the databse
@@ -25,6 +25,11 @@ document.addEventListener("deviceready", onDeviceReady, false);
         tx.executeSql('CREATE TABLE IF NOT EXISTS gps (id INTEGER PRIMARY KEY AUTOINCREMENT, location VARCHAR(30) NOT NULL, start_time VARCHAR(30) NOT NULL, cycle_length VARCHAR(30) NOT NULL,arrival_open VARCHAR(30) NOT NULL, arrival_close VARCHAR(30) NOT NULL)');
         
     }
+    
+     function successCB() {
+          
+            db.transaction(queryDB, errorCB);
+        }
   
 	
  $("#save").bind ("click", function (event){
