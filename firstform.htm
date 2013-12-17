@@ -23,14 +23,17 @@ document.addEventListener("deviceready", onDeviceReady, false);
         //Create the table
         //tx.executeSql('DROP TABLE IF EXISTS MyContacts');
         tx.executeSql('CREATE TABLE IF NOT EXISTS gps (id INTEGER PRIMARY KEY AUTOINCREMENT, location VARCHAR(30) NOT NULL, start_time VARCHAR(30) NOT NULL, cycle_length VARCHAR(30) NOT NULL,arrival_open VARCHAR(30) NOT NULL, arrival_close VARCHAR(30) NOT NULL)');
-        
+        tx.executeSql("insert into gps (location,start_time) values('x','z')");
     }
     
      function successCB() {
           
-            db.transaction(queryDB, errorCB);
+            db.transaction(queryDB, errorCB2);
         }
-  
+   function errorCB2(err)
+   {
+   	alert("sqlerror:"+err.message);
+   }
 	
  $("#save").bind ("click", function (event){
      
