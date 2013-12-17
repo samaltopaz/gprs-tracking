@@ -35,13 +35,13 @@ document.addEventListener("deviceready", onDeviceReady, false);
  $("#save").bind ("click", function (event){
      
      
-      var str="'A'";
+      var str="A";
          $('.A').each(function(){
           
       var loca=($(this).val());
       var y=($(this).attr('col_val'));
       
-      str= str +",'"+loca+"';
+      str= str +","+loca;
    
 
 		  
