@@ -101,6 +101,7 @@ tx.executeSql(("INSERT INTO gps(`location`,`start_time`,`cycle_length`,`arrival_
  
 function queryDB(tx) {
             tx.executeSql('SELECT * FROM gps', [], querySuccess, errorCB);
+            alert(1);
         }
 
 
