@@ -168,7 +168,7 @@
 
             destinationBearing = Math.round(currentPosition.bearingTo(destinationPosition)); 
 
-            $distance.html(Math.round(currentPosition.distanceTo(destinationPosition)));           
+            $distance.html(Math.round(currentPosition.distanceTo(destinationPosition)*1000));           
             $bearing.html(destinationBearing);
 
             updateDifference(); 
@@ -202,11 +202,11 @@
     <h2>Destination</h2>
     <div>
         <label for="target-lat">Latitude: </label>
-        <input id="target-lat" value="22.20" />
+        <input id="target-lat" value="22.2000000" />
     </div>
     <div>
         <label for="target-lon">Longitude: </label>
-        <input id="target-lon" value="84.88" />
+        <input id="target-lon" value="84.8800000" />
     </div>
 
 </body>
