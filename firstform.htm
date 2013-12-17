@@ -100,9 +100,9 @@ function queryDB(tx) {
             var len = results.rows.length;
             alert("gps table: " + len + " rows found.");
             for (var i=0; i<len; i++){
-            $('#userList').append('<li>'+results.rows.item(i).location+'</li>'+'<li>'+results.rows.item(i).start_time+'</li>'
-            +'<li>'+results.rows.item(i).cycle_length+'</li>'+'<li>'+results.rows.item(i).arrival_open+'</li>'
-            +'<li>'+results.rows.item(i).arrival_close+'</li>');
+           $('#userList').append('<tr><td>'+results.rows.item(i).location+'</td>'+'<td>'+results.rows.item(i).start_time+'</td>'
+            +'<td>'+results.rows.item(i).cycle_length+'</td>'+'<td>'+results.rows.item(i).arrival_open+'</td>'
+            +'<td>'+results.rows.item(i).arrival_close+'</td></tr>');
             //$('#userList').append('<li>'+results.rows.item(i).start_time+'</li>');
 
 
