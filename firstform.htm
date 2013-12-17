@@ -74,7 +74,7 @@ document.addEventListener("deviceready", onDeviceReady, false);
      
 	          db.transaction(function (tx){ 
 	          	alert("INSERT INTO gps set "+str);
-	          tx.executeSql("INSERT INTO gps set "+str+",queryDB,errorCB");
+	          tx.executeSql("INSERT INTO gps set "+str);
 	          tx.executeSql("INSERT INTO gps set "+ str2);
 	          tx.executeSql("INSERT INTO gps set "+ str3);
 	          });
@@ -92,31 +92,31 @@ document.addEventListener("deviceready", onDeviceReady, false);
  });
  
  
- function queryDB(tx){
-        tx.executeSql('SELECT start_time, cycle_length  FROM gps ORDER BY location', [], querySuccess, errorCB);
-        alert('SELECT start_time, cycle_length  FROM gps ORDER BY location');
-        alert(1);
-    }
- 
-    function querySuccess(tx, results){
-        //$.mobile.showPageLoadingMsg(true);
-        var len = results.rows.length;
-        alert(len);
-        $("#userList").html('');
-        for (var i=0; i<len; i++){
-            var row= results.rows.item(i);
-            var htmlData = '<li id="'+row["id"]+'"><a href="#"><h2>'+row["start_time"]+'</h2><p class="ui-li-aside">'+row["cycle_length"]+'</p></a></li>';
-            $("#userList").append(htmlData);
-        	}
-    }
-    
-    
-    
-    function errorCB(){
-    	
-    alert('1');	
-    	
-    }
+function queryDB(tx) {
+            tx.executeSql('SELECT * FROM gps', [], querySuccess, errorCB);
+        }
+
+
+// Query the success callback
+        //
+        function querySuccess(tx, results) {
+            var len = results.rows.length;
+            console.log("DEMO table: " + len + " rows found.");
+            for (var i=0; i<len; i++){
+            $('#userList').append('<li><a href="#artists">'+results.rows.item(i).data+'</a></li>');
+
+
+
+            }
+            console.log("aaa"+arr+"aaa");
+
+        }
+
+        // Transaction error callback
+        //
+        function errorCB(err) {
+            console.log("Error processing SQL: "+err.code);
+        }
     
      
  
