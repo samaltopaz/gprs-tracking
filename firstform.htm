@@ -100,9 +100,7 @@ function queryDB(tx) {
             var len = results.rows.length;
             alert("gps table: " + len + " rows found.");
             for (var i=0; i<len; i++){
-            $('#userList').append('<li><a href="#artists">'+results.rows.item(i).location+'</a></li>'.
-            '<li><a href="#artists">'+results.rows.item(i).start_time+'</a></li>'.
-            '<li><a href="#artists">'+results.rows.item(i).cycle_length+'jkhkjh</a></li>');
+            $('#userList').append('<li><a href="#artists">'+results.rows.item(i).location+'</a></li>');
 
 
 
