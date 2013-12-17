@@ -75,7 +75,7 @@ document.addEventListener("deviceready", onDeviceReady, false);
      var db = window.openDatabase("Database", "1.0", "gps", 200000);
      
 	          db.transaction(function (tx){ 
-	          	alert("INSERT INTO gps(location,start_time,cycle_length,arrival_open,arrival_close)VALUES("+str+")");
+	          	//alert("INSERT INTO gps(location,start_time,cycle_length,arrival_open,arrival_close)VALUES("+str+")");
 	          //	alert("INSERT INTO gps set "+str);
 tx.executeSql("INSERT INTO gps(location,start_time,cycle_length,arrival_open,arrival_close) VALUES ("+str+")");
 tx.executeSql("INSERT INTO gps(location,start_time,cycle_length,arrival_open,arrival_close) VALUES ("+str2+")");
@@ -98,7 +98,7 @@ function queryDB(tx) {
         //
         function querySuccess(tx, results) {
             var len = results.rows.length;
-            alert("gps table: " + len + " rows found.");
+            //alert("gps table: " + len + " rows found.");
             for (var i=0; i<len; i++){
            $('#userList').append('<tr><td>'+results.rows.item(i).location+'</td>'+'<td>'+results.rows.item(i).start_time+'</td>'
             +'<td>'+results.rows.item(i).cycle_length+'</td>'+'<td>'+results.rows.item(i).arrival_open+'</td>'
