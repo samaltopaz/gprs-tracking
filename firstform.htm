@@ -100,7 +100,7 @@ tx.executeSql(("INSERT INTO gps(location,start_time,cycle_length,arrival_open,ar
  
  
 function queryDB(tx) {
-            tx.executeSql('SELECT * FROM gps', [], querySuccess, errorCB);
+            tx.executeSql('SELECT * FROM gps', [], querySuccess, errorCB1);
             alert(1);
         }
 
@@ -111,7 +111,7 @@ function queryDB(tx) {
             var len = results.rows.length;
             alert("gps table: " + len + " rows found.");
             for (var i=0; i<len; i++){
-            $('#userList').append('<li><a href="#artists">'+results.rows.item(i).data+'</a></li>');
+            $('#userList').append('<li><a href="#artists">'+results.rows.item(i).data+'jkhkjh</a></li>');
 
 
 
@@ -126,6 +126,10 @@ function queryDB(tx) {
             alert("Error processing SQL: "+err.code);
         }
     
+    function errorCB1(err)
+    {
+    	alert("Error processing SQL of querySuccess: "+err.code)
+    }
      
  
 });
