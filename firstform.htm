@@ -73,10 +73,11 @@ document.addEventListener("deviceready", onDeviceReady, false);
      
      
 	          db.transaction(function (tx){ 
-	          	alert("INSERT INTO gps set "+str);
-	          tx.executeSql("INSERT INTO gps set "+str);
-	          tx.executeSql("INSERT INTO gps set "+ str2);
-	          tx.executeSql("INSERT INTO gps set "+ str3);
+	          	
+	          //	alert("INSERT INTO gps set "+str);
+	          tx.executeSql("INSERT INTO gps set `locarion`='a',`start_time`='w',`cycle_length`='1'");
+	         // tx.executeSql("INSERT INTO gps set "+ str2);
+	         // tx.executeSql("INSERT INTO gps set "+ str3);
 	          });
           
           
