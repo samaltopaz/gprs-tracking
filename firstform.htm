@@ -123,12 +123,12 @@ function queryDB(tx) {
         // Transaction error callback
         //
         function errorCB(err) {
-            alert("Error processing SQL: "+err.code);
+            alert("Error processing SQL: "+err.message);
         }
     
     function errorCB1(err)
     {
-    	alert("Error processing SQL of querySuccess: "+err.code)
+    	alert("Error processing SQL of querySuccess: "+err.message)
     }
      
  
