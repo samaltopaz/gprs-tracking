@@ -94,11 +94,13 @@ document.addEventListener("deviceready", onDeviceReady, false);
  
  function queryDB(tx){
         tx.executeSql('SELECT start_time, cycle_length  FROM gps ORDER BY location', [], querySuccess, errorCB);
+        alert('SELECT start_time, cycle_length  FROM gps ORDER BY location');
     }
  
     function querySuccess(tx, results){
-        $.mobile.showPageLoadingMsg(true);
+        //$.mobile.showPageLoadingMsg(true);
         var len = results.rows.length;
+        alert(len);
         $("#userList").html('');
         for (var i=0; i<len; i++){
             var row= results.rows.item(i);
