@@ -28,7 +28,7 @@ document.addEventListener("deviceready", onDeviceReady, false);
     
      function successCB() {
           
-            db.transaction(queryDB, errorCB2);
+            alert("table created successfully");
         }
    function errorCB2(err)
    {
@@ -49,62 +49,48 @@ document.addEventListener("deviceready", onDeviceReady, false);
 
 		  
     		});
-    alert(str);
      
-     
-     
-      var str2="`location`='B'";
+      var str2="'B'";
          $('.B').each(function(){
           
       var locb=($(this).val());
       var yb=($(this).attr('col_val'));
+       str2= str2 +",'"+locb+"'";
       
-      str2= str2 +",`"+yb+"`='"+locb+"'";
+      
    
 
       
     		});
-    alert(str2);
+   
     
-    var str3="`location`='C'";
+    var str3="'C'";
          $('.C').each(function(){
           
       var locc=($(this).val());
       var yc=($(this).attr('col_val'));
-      
-      str3= str3 +",`"+yc+"`='"+locc+"'";
-   
-
-      
+      str3= str3 +",'"+locc+"'";
 		 });
-    alert(str3);
+   
      var db = window.openDatabase("Database", "1.0", "gps", 200000);
      
 	          db.transaction(function (tx){ 
 	          	alert("INSERT INTO gps(location,start_time,cycle_length,arrival_open,arrival_close)VALUES("+str+")");
 	          //	alert("INSERT INTO gps set "+str);
 tx.executeSql("INSERT INTO gps(location,start_time,cycle_length,arrival_open,arrival_close) VALUES ("+str+")");
+tx.executeSql("INSERT INTO gps(location,start_time,cycle_length,arrival_open,arrival_close) VALUES ("+str2+")");
+tx.executeSql("INSERT INTO gps(location,start_time,cycle_length,arrival_open,arrival_close) VALUES ("+str3+")");
 	          //tx.executeSql("INSERT INTO gps set "+ str2);
 	          //tx.executeSql("INSERT INTO gps set "+ str3);
 	         
 	          });
           
-          
-          
-          
-          
-       // alert(loca);
-        //alert(locb);
-        
-       
-        
-        //alert(locc);
  });
  
  
 function queryDB(tx) {
             tx.executeSql('SELECT * FROM gps', [], querySuccess, errorCB1);
-            alert(1);
+            
         }
 
 
@@ -114,12 +100,14 @@ function queryDB(tx) {
             var len = results.rows.length;
             alert("gps table: " + len + " rows found.");
             for (var i=0; i<len; i++){
-            $('#userList').append('<li><a href="#artists">'+results.rows.item(i).location+'jkhkjh</a></li>');
+            $('#userList').append('<li><a href="#artists">'+results.rows.item(i).location+'</a></li>'.
+            '<li><a href="#artists">'+results.rows.item(i).start_time+'</a></li>'.
+            '<li><a href="#artists">'+results.rows.item(i).cycle_length+'jkhkjh</a></li>');
 
 
 
             }
-            alert(11);
+            
 
         }
 
