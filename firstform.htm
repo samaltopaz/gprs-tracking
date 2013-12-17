@@ -80,9 +80,9 @@ document.addEventListener("deviceready", onDeviceReady, false);
 	          db.transaction(function (tx){ 
 	          	
 	          //	alert("INSERT INTO gps set "+str);
-	          tx.executeSql("INSERT INTO gps set `location`='a',`start_time`='w',`cycle_length`='1'");
-	         // tx.executeSql("INSERT INTO gps set "+ str2);
-	         // tx.executeSql("INSERT INTO gps set "+ str3);
+	          tx.executeSql("INSERT INTO gps set "+ str);
+	          tx.executeSql("INSERT INTO gps set "+ str2);
+	          tx.executeSql("INSERT INTO gps set "+ str3);
 	         
 	          });
           
@@ -108,21 +108,21 @@ function queryDB(tx) {
         //
         function querySuccess(tx, results) {
             var len = results.rows.length;
-            console.log("gps table: " + len + " rows found.");
+            alert("gps table: " + len + " rows found.");
             for (var i=0; i<len; i++){
             $('#userList').append('<li><a href="#artists">'+results.rows.item(i).data+'</a></li>');
 
 
 
             }
-            console.log("aaa"+arr+"aaa");
+            alert("aaa"+arr+"aaa");
 
         }
 
         // Transaction error callback
         //
         function errorCB(err) {
-            console.log("Error processing SQL: "+err.code);
+            alert("Error processing SQL: "+err.code);
         }
     
      
