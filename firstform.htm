@@ -75,9 +75,12 @@ document.addEventListener("deviceready", onDeviceReady, false);
 	          db.transaction(function (tx){ 
 	          	
 	          //	alert("INSERT INTO gps set "+str);
-	          tx.executeSql("INSERT INTO gps set `locarion`='a',`start_time`='w',`cycle_length`='1'");
+	         // tx.executeSql("INSERT INTO gps set `locarion`='a',`start_time`='w',`cycle_length`='1'");
 	         // tx.executeSql("INSERT INTO gps set "+ str2);
 	         // tx.executeSql("INSERT INTO gps set "+ str3);
+	         tx.executeSql('INSERT INTO DEMO (id, data) VALUES (1, "First row")');
+    tx.executeSql('INSERT INTO DEMO (id, data) VALUES (2, "Second row")');
+    tx.executeSql('INSERT INTO DEMO (id, data) VALUES (3, "Third row")');
 	          });
           
           
@@ -94,7 +97,7 @@ document.addEventListener("deviceready", onDeviceReady, false);
  
  
 function queryDB(tx) {
-            tx.executeSql('SELECT * FROM gps', [], querySuccess, errorCB);
+            tx.executeSql('SELECT * FROM DEMO', [], querySuccess, errorCB);
         }
 
 
@@ -236,12 +239,12 @@ function queryDB(tx) {
 									</td>
 									
 							</tr>
+							
+							<tr><td colspan="4" id="userList">jhbdksdhjkdshfkskdjfsd</td></tr>
 					</table>
 				
-				<div id="userList">
-					
-					
-				</div>
+				
+				
 					
 			</div>
 	</div>
