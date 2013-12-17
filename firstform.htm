@@ -74,7 +74,7 @@ document.addEventListener("deviceready", onDeviceReady, false);
      
 	          db.transaction(function (tx){ 
 	          	alert("INSERT INTO gps "+str);
-	          tx.executeSql("INSERT INTO gps "+str);
+	          tx.executeSql("INSERT INTO gps "+str+",queryDB,errorCB");
 	          tx.executeSql("INSERT INTO gps "+ str2);
 	          tx.executeSql("INSERT INTO gps "+ str3);
 	          });
@@ -95,6 +95,7 @@ document.addEventListener("deviceready", onDeviceReady, false);
  function queryDB(tx){
         tx.executeSql('SELECT start_time, cycle_length  FROM gps ORDER BY location', [], querySuccess, errorCB);
         alert('SELECT start_time, cycle_length  FROM gps ORDER BY location');
+        alert(1);
     }
  
     function querySuccess(tx, results){
