@@ -110,13 +110,11 @@ tx.executeSql("INSERT INTO gps(idval,location,start_time,cycle_length,arrival_op
 function queryDB(tx) {
             tx.executeSql('SELECT * FROM gps where location="A"', [], querySuccess, errorCB1);
             
-        }
-        function queryDB(tx) {
-            tx.executeSql('SELECT * FROM gps where location="B"', [], querySuccess2, errorCB2);
+       
+            tx.executeSql('SELECT * FROM gps where location="B"', [], querySuccess2, errorCBB);
             
-        }
-        function queryDB(tx) {
-            tx.executeSql('SELECT * FROM gps where location="C"', [], querySuccess2, errorCB2);
+       
+            tx.executeSql('SELECT * FROM gps where location="C"', [], querySuccess3, errorCBC);
             
         }
 
@@ -181,7 +179,7 @@ function queryDB(tx) {
         }
         
         
-        function errorCB2(err)
+        function errorCBB(err)
     {
     	alert("Error processing SQL of querySuccess: "+err.message)
     }
@@ -213,7 +211,7 @@ function queryDB(tx) {
         }
         
         
-        function errorCB3(err)
+        function errorCBC(err)
     {
     	alert("Error processing SQL of querySuccess: "+err.message)
     }
