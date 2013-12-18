@@ -77,9 +77,10 @@ document.addEventListener("deviceready", onDeviceReady, false);
 	          db.transaction(function (tx){ 
 	          	
 	          	var unqid = new Date().getTime();
-
+alert(unqid);
 	          	//alert("INSERT INTO gps(location,start_time,cycle_length,arrival_open,arrival_close)VALUES("+str+")");
 	          //	alert("INSERT INTO gps set "+str);
+	          alert("INSERT INTO gps(idval,location,start_time,cycle_length,arrival_open,arrival_close) VALUES ('unqid',"+str+")");
 tx.executeSql("INSERT INTO gps(idval,location,start_time,cycle_length,arrival_open,arrival_close) VALUES ('unqid',"+str+")");
 tx.executeSql("INSERT INTO gps(idval,location,start_time,cycle_length,arrival_open,arrival_close) VALUES ('unqid',"+str2+")");
 tx.executeSql("INSERT INTO gps(idval,location,start_time,cycle_length,arrival_open,arrival_close) VALUES ('unqid',"+str3+")");
