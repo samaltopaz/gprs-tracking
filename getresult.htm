@@ -18,10 +18,20 @@ document.addEventListener("deviceready", onDeviceReady, false);
         
         
     }
+    
+    function errorCB()
+    {
+         alert("error");
+    }
+    function successCB()
+    {
+         alert("success");
+    }
  
  
 function queryDB(tx) {
-     alert('SELECT * FROM lat_long', [], querySuccess, errorCB1);
+     alert(1);
+     alert('SELECT * FROM lat_long');
             tx.executeSql('SELECT * FROM lat_long', [], querySuccess, errorCB1);
 
             
@@ -31,13 +41,14 @@ function queryDB(tx) {
         function querySuccess(tx, results){
         
         var len = results.rows.length;
+        alert(len);
         $("#userList").html('');
         for (var i=0; i<len; i++){
             var row= results.rows.item(i);
             var htmlData = '<li id="'+row["latitude"]+'"><a href="#"><h2>'+row["longitude"]+'</h2><p class="ui-li-aside">'+row["timestamp"]+'</p></a></li>';
             $("#userList").append(htmlData).listview('refresh');
         }
-
+}
         // Transaction error callback
         //
        
