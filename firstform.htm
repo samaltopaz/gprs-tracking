@@ -22,7 +22,7 @@ document.addEventListener("deviceready", onDeviceReady, false);
     function populateDB(tx){
         //Create the table
         //tx.executeSql('DROP TABLE IF EXISTS MyContacts');
-        tx.executeSql('CREATE TABLE IF NOT EXISTS gps (id INTEGER PRIMARY KEY AUTOINCREMENT, location VARCHAR(30), start_time VARCHAR(30), cycle_length VARCHAR(30),arrival_open VARCHAR(30), arrival_close VARCHAR(30))');
+        tx.executeSql('CREATE TABLE IF NOT EXISTS gps (id INTEGER PRIMARY KEY AUTOINCREMENT,idval VARCHAR(50),location VARCHAR(30), start_time VARCHAR(30), cycle_length VARCHAR(30),arrival_open VARCHAR(30), arrival_close VARCHAR(30))');
         
     }
     
@@ -75,18 +75,14 @@ document.addEventListener("deviceready", onDeviceReady, false);
      var db = window.openDatabase("Database", "1.0", "gps", 200000);
      
 	          db.transaction(function (tx){ 
-	          	var ID = function () {
-// Math.random should be unique because of its seeding algorithm.
-// Convert it to base 36 (numbers + letters), and grab the first 9 characters
-// after the decimal.
-return '_' + Math.random().toString(36).substr(2, 9);
-alert(ID);
-};
+	          	
+	          	var unqid = new Date().getTime();
+
 	          	//alert("INSERT INTO gps(location,start_time,cycle_length,arrival_open,arrival_close)VALUES("+str+")");
-alert(ID);	          //	alert("INSERT INTO gps set "+str);
-tx.executeSql("INSERT INTO gps(location,start_time,cycle_length,arrival_open,arrival_close) VALUES ("+str+")");
-tx.executeSql("INSERT INTO gps(location,start_time,cycle_length,arrival_open,arrival_close) VALUES ("+str2+")");
-tx.executeSql("INSERT INTO gps(location,start_time,cycle_length,arrival_open,arrival_close) VALUES ("+str3+")");
+	          //	alert("INSERT INTO gps set "+str);
+tx.executeSql("INSERT INTO gps(idval,location,start_time,cycle_length,arrival_open,arrival_close) VALUES ('unqid',"+str+")");
+tx.executeSql("INSERT INTO gps(idval,location,start_time,cycle_length,arrival_open,arrival_close) VALUES ('unqid',"+str2+")");
+tx.executeSql("INSERT INTO gps(idval,location,start_time,cycle_length,arrival_open,arrival_close) VALUES ('unqid',"+str3+")");
 	          //tx.executeSql("INSERT INTO gps set "+ str2);
 	          //tx.executeSql("INSERT INTO gps set "+ str3);
 	         
@@ -111,19 +107,7 @@ function queryDB(tx) {
             +'<td>'+results.rows.item(i).cycle_length+'</td>'+'<td>'+results.rows.item(i).arrival_open+'</td>'
             +'<td>'+results.rows.item(i).arrival_close+'</td></tr>');
             
-               $('.A').append('<tr><td>'+results.rows.item(i).location+'</td>'+'<td>'+results.rows.item(i).start_time+'</td>'
-            +'<td>'+results.rows.item(i).cycle_length+'</td>'+'<td>'+results.rows.item(i).arrival_open+'</td>'
-            +'<td>'+results.rows.item(i).arrival_close+'</td></tr>');
-            
-            
-            $('.B').append('<tr><td>'+results.rows.item(i).location+'</td>'+'<td>'+results.rows.item(i).start_time+'</td>'
-            +'<td>'+results.rows.item(i).cycle_length+'</td>'+'<td>'+results.rows.item(i).arrival_open+'</td>'
-            +'<td>'+results.rows.item(i).arrival_close+'</td></tr>');
-            
-            $('.C').append('<tr><td>'+results.rows.item(i).location+'</td>'+'<td>'+results.rows.item(i).start_time+'</td>'
-            +'<td>'+results.rows.item(i).cycle_length+'</td>'+'<td>'+results.rows.item(i).arrival_open+'</td>'
-            +'<td>'+results.rows.item(i).arrival_close+'</td></tr>');
-            
+            $('#id').val(results.rows.item(i).location);
             //$('#userList').append('<li>'+results.rows.item(i).start_time+'</li>');
 
 
@@ -268,7 +252,7 @@ function queryDB(tx) {
 							</tr>
 							
 							<tr>
-							<td><input type="hidden" name="id" id="id" value="" /></td>
+							<td><input type="text" name="id" id="id" value="" /></td>
 							<td colspan="3" id="userList">jhbdksdhjkdshfkskdjfsd</td></tr>
 					</table>
 				
