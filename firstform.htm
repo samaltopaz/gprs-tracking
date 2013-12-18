@@ -124,6 +124,8 @@ function queryDB(tx) {
             +'<td>'+results.rows.item(i).arrival_close+'</td></tr>');
             
             $('#id').val(results.rows.item(i).idval);
+            
+            $('#start_timeA').val(results.rows.item(i).start_time);
          
             
             //$('#userList').append('<li>'+results.rows.item(i).start_time+'</li>');
