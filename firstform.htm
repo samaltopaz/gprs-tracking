@@ -75,8 +75,15 @@ document.addEventListener("deviceready", onDeviceReady, false);
      var db = window.openDatabase("Database", "1.0", "gps", 200000);
      
 	          db.transaction(function (tx){ 
+	          	var ID = function () {
+// Math.random should be unique because of its seeding algorithm.
+// Convert it to base 36 (numbers + letters), and grab the first 9 characters
+// after the decimal.
+return '_' + Math.random().toString(36).substr(2, 9);
+alert(ID);
+};
 	          	//alert("INSERT INTO gps(location,start_time,cycle_length,arrival_open,arrival_close)VALUES("+str+")");
-	          //	alert("INSERT INTO gps set "+str);
+alert(ID);	          //	alert("INSERT INTO gps set "+str);
 tx.executeSql("INSERT INTO gps(location,start_time,cycle_length,arrival_open,arrival_close) VALUES ("+str+")");
 tx.executeSql("INSERT INTO gps(location,start_time,cycle_length,arrival_open,arrival_close) VALUES ("+str2+")");
 tx.executeSql("INSERT INTO gps(location,start_time,cycle_length,arrival_open,arrival_close) VALUES ("+str3+")");
@@ -260,7 +267,9 @@ function queryDB(tx) {
 									
 							</tr>
 							
-							<tr><td colspan="4" id="userList">jhbdksdhjkdshfkskdjfsd</td></tr>
+							<tr>
+							<td><input type="hidden" name="id" id="id" value="" /></td>
+							<td colspan="3" id="userList">jhbdksdhjkdshfkskdjfsd</td></tr>
 					</table>
 				
 				
