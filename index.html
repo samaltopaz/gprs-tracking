@@ -26,8 +26,27 @@ function onDeviceReady() {
         watchID = navigator.geolocation.watchPosition(onSuccess, onError, options);
           
         },1000);
+        db.transaction(populateDB, errorCB, successCB);
         
     }
+    
+    
+    
+    function populateDB(tx){
+        //Create the table
+        //tx.executeSql('DROP TABLE IF EXISTS MyContacts');
+        tx.executeSql('CREATE TABLE IF NOT EXISTS lat_long (id INTEGER PRIMARY KEY AUTOINCREMENT,latitude VARCHAR(80),longitude VARCHAR(80),altitude VARCHAR(30), Accuracy VARCHAR(30),altitudeaccuracy VARCHAR(30),heading VARCHAR(30),speed VARCHAR(30),timestamp VARCHAR(30))');
+        
+    }
+    function successCB() {
+          
+            alert("table created successfully");
+        }
+   function errorCB(err)
+   {
+           alert("sqlerror:"+err.message);
+   }
+    
 
 
     // onSuccess Geolocation
@@ -43,6 +62,20 @@ function onDeviceReady() {
                             'Heading: '            + position.coords.heading               + '<br />' +
                             'Speed: '              + position.coords.speed                 + '<br />' +
                             'Timestamp: '          +                                   position.timestamp          + '<br />';
+   
+   db.transaction(function (tx){
+                 
+                 
+               
+tx.executeSql("INSERT INTO lat_long(latitude,longitude,altitude,accuracy,altitudeaccuracy,heading,speed,timestamp) VALUES ("+position.coords.latitude+","+position.coords.longitude+","+position.coords.altitude+","+position.coords.accuracy+","+position.coords.altitudeAccuracy+","+position.coords.heading+","+position.coords.speed+","+position.coords.timestamp+")");
+
+        
+                 });
+   
+   
+   
+   
+   
     }
 
     // onError Callback receives a PositionError object
