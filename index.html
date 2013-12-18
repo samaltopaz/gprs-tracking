@@ -25,7 +25,7 @@ function onDeviceReady() {
   
         // Update every 1 seconds
         window.setInterval(function(){
-        var options = { frequency: 1000, enableHighAccuracy: true };
+      
         watchID = navigator.geolocation.watchPosition(onSuccess, onError, options);
           
         },1000);
@@ -55,6 +55,8 @@ function onDeviceReady() {
     // onSuccess Geolocation
     //
     function onSuccess(position) {
+       var db = window.openDatabase("Database", "1.0", "gps", 200000);
+
      
         var element = document.getElementById('geolocation');
         element.innerHTML = 'Latitude: '           + position.coords.latitude              + '<br />' +
@@ -68,7 +70,7 @@ function onDeviceReady() {
                             
    
    
-    }
+    
     
      db.transaction(function (tx){
                  
@@ -78,6 +80,12 @@ tx.executeSql("INSERT INTO lat_long(latitude,longitude,altitude,accuracy,altitud
 
         
                  });  
+                 
+    }     
+                 
+                 
+                 
+                 
     
     
 
