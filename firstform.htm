@@ -93,9 +93,11 @@ tx.executeSql("INSERT INTO gps(idval,location,start_time,cycle_length,arrival_op
 	          	else
 	          	{
 	          		alert("else");
-//alert("UPDATE gps SET idval=?, location=?, start_time=?, cycle_length=?, arrival_open=?, arrival_close=?  WHERE idval=? ,["+id+","+str+","+id+"]");	          		
+alert("UPDATE gps SET idval=?, location=?, start_time=?, cycle_length=?, arrival_open=?, arrival_close=?  WHERE idval=? ,["+id+","+str+","+id+"]");	          		
 	          	
-//tx.executeSql("UPDATE gps SET idval=?, location=?, start_time=?, cycle_length=?, arrival_open=?, arrival_close=?  WHERE idval=? ",[unqid,str,id]); 
+tx.executeSql("UPDATE gps SET idval=?, location=?, start_time=?, cycle_length=?, arrival_open=?, arrival_close=?  WHERE idval=? ",[unqid,str,id]);
+tx.executeSql("UPDATE gps SET idval=?, location=?, start_time=?, cycle_length=?, arrival_open=?, arrival_close=?  WHERE idval=? ",[unqid,str2,id]);
+tx.executeSql("UPDATE gps SET idval=?, location=?, start_time=?, cycle_length=?, arrival_open=?, arrival_close=?  WHERE idval=? ",[unqid,str3,id]);
   	          	
 	          		
 	          		
@@ -344,8 +346,8 @@ function queryDB(tx) {
 							</tr>
 							
 							<tr>
-							<td><input type="text" name="id" id="id" value="" /></td>
-							<td colspan="3" id="userList">jhbdksdhjkdshfkskdjfsd</td></tr>
+							<td><input type="hidden" name="id" id="id" value="" /></td>
+							</tr>
 					</table>
 				
 				
