@@ -93,7 +93,7 @@ tx.executeSql("INSERT INTO gps(idval,location,start_time,cycle_length,arrival_op
 	          	else
 	          	{
 	          		alert("else");
-alert("UPDATE gps SET idval=?, location=?, start_time=?, cycle_length=?, arrival_open=?, arrival_close=?  WHERE idval=? ",[unqid,str,id]);	          		
+alert("UPDATE gps SET idval=?, location=?, start_time=?, cycle_length=?, arrival_open=?, arrival_close=?  WHERE idval=? ,["+unqid+","+str+","+id+"]");	          		
 	          	
 //tx.executeSql("UPDATE gps SET idval=?, location=?, start_time=?, cycle_length=?, arrival_open=?, arrival_close=?  WHERE idval=? ",[unqid,str,id]); 
   	          	
