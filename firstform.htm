@@ -117,18 +117,18 @@ function queryDB(tx) {
         //
         function querySuccess(tx, results) {
             var len = results.rows.length;
-            alert(len);
-            //var row = results.rows.item(0);
-            //alert(row['idval']);
-        		// $('#id').val(row['idval']);
-        		 //$('#start_timeA').val(row['start_time']);
-        		 //$('#cycle_lengthA').val(row['cycle_length']);
-        		 //$('#arrival_openA').val(row['arrival_open']);
-        		 //$('#arrival_closeA').val(row['arrival_close']);
-        		 
-           
+            //alert("gps table: " + len + " rows found.");
+            for (var i=0; i<len; i++){
+           $('#userList').append('<tr><td>'+results.rows.item(i).location+'</td>'+'<td>'+results.rows.item(i).start_time+'</td>'
+            +'<td>'+results.rows.item(i).cycle_length+'</td>'+'<td>'+results.rows.item(i).arrival_open+'</td>'
+            +'<td>'+results.rows.item(i).arrival_close+'</td></tr>');
             
-           
+            $('#id').val(results.rows.item(i).idval);
+         
+            
+            //$('#userList').append('<li>'+results.rows.item(i).start_time+'</li>');
+
+
 
             }
             
@@ -220,7 +220,7 @@ function queryDB(tx) {
 											Cycle Length
 									</td>
 									<td>
-											<input type="text" name="" col_val="cycle_length"  class="textbox2 A" id="cycle_lengthA" />
+											<input type="text" name="" col_val="cycle_length"  class="textbox2 A" />
 									</td>
 									<td>
 											<input type="text" name="" col_val="cycle_length"  class="textbox2 B" />
@@ -234,7 +234,7 @@ function queryDB(tx) {
 											Arrival Open
 									</td>
 									<td>
-											<input type="text" name="" col_val="arrival_open"  class="textbox2 A" id="arrival_openA"/>
+											<input type="text" name="" col_val="arrival_open"  class="textbox2 A" />
 									</td>
 									<td>
 											<input type="text" name="" col_val="arrival_open"  class="textbox2 B" />
@@ -249,7 +249,7 @@ function queryDB(tx) {
 											Arrival Close
 									</td>
 									<td>
-											<input type="text" name="" col_val="arrival_close"  class="textbox2 A" id="arrival_closeA"/>
+											<input type="text" name="" col_val="arrival_close"  class="textbox2 A" />
 									</td>
 									<td>
 											<input type="text" name=""  col_val="arrival_close" class="textbox2 B" />
