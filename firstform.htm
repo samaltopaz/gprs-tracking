@@ -95,9 +95,9 @@ tx.executeSql("INSERT INTO gps(idval,location,start_time,cycle_length,arrival_op
 	          		alert("else");
 alert("UPDATE gps SET idval=?, location=?, start_time=?, cycle_length=?, arrival_open=?, arrival_close=?  WHERE idval=? ,["+id+","+str+","+id+"]");	          		
 	          	
-tx.executeSql("UPDATE gps SET idval=?, location=?, start_time=?, cycle_length=?, arrival_open=?, arrival_close=?  WHERE idval=? ,["+id+","+str+","+id+"]");
-tx.executeSql("UPDATE gps SET idval=?, location=?, start_time=?, cycle_length=?, arrival_open=?, arrival_close=?  WHERE idval=? ,["+id+","+str2+","+id+"]");
-tx.executeSql("UPDATE gps SET idval=?, location=?, start_time=?, cycle_length=?, arrival_open=?, arrival_close=?  WHERE idval=? ,["+id+","+str3+","+id+"]");
+tx.executeSql("UPDATE gps SET idval=?, location=?, start_time=?, cycle_length=?, arrival_open=?, arrival_close=?  WHERE idval=? , location=A,["+id+","+str+","+id+"]");
+tx.executeSql("UPDATE gps SET idval=?, location=?, start_time=?, cycle_length=?, arrival_open=?, arrival_close=?  WHERE idval=? ,location=B,["+id+","+str2+","+id+"]");
+tx.executeSql("UPDATE gps SET idval=?, location=?, start_time=?, cycle_length=?, arrival_open=?, arrival_close=?  WHERE idval=? ,location=C,["+id+","+str3+","+id+"]");
   	          	
 	          		
 	          		
