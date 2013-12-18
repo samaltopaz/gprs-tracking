@@ -33,21 +33,20 @@ function queryDB(tx) {
         $("#userList").html('');
         for (var i=0; i<len; i++){
             var row= results.rows.item(i);
-            var htmlData = '<li id="'+row["id"]+'"><a href="#"><h2>'+row["name"]+'</h2><p class="ui-li-aside">'+row["nickName"]+'</p></a></li>';
+            var htmlData = '<li id="'+row["latitude"]+'"><a href="#"><h2>'+row["longitude"]+'</h2><p class="ui-li-aside">'+row["timestamp"]+'</p></a></li>';
             $("#userList").append(htmlData).listview('refresh');
         }
 
         // Transaction error callback
         //
-        function errorCB(err) {
-            alert("Error processing SQL: "+err.message);
-        }
+       
     
     function errorCB1(err)
     {
             alert("Error processing SQL of querySuccess: "+err.message)
     }
     });
+    </script>
    </head>
    <body>
         <div id="userList">
