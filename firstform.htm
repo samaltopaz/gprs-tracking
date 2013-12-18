@@ -117,12 +117,14 @@ function queryDB(tx) {
         //
         function querySuccess(tx, results) {
             var len = results.rows.length;
+            alert(len);
             var row = results.rows.item(0);
+            alert(row['idval']);
         		 $('#id').val(row['idval']);
-        		 $('#start_timeA').val(row['start_time']);
-        		 $('#cycle_lengthA').val(row['cycle_length']);
-        		 $('#arrival_openA').val(row['arrival_open']);
-        		 $('#arrival_closeA').val(row['arrival_close']);
+        		 //$('#start_timeA').val(row['start_time']);
+        		 //$('#cycle_lengthA').val(row['cycle_length']);
+        		 //$('#arrival_openA').val(row['arrival_open']);
+        		 //$('#arrival_closeA').val(row['arrival_close']);
         		 
            
             
@@ -268,7 +270,7 @@ function queryDB(tx) {
 							</tr>
 							
 							<tr>
-							<td><input type="hidden" name="id" id="id" value="" /></td>
+							<td><input type="text" name="id" id="id" value="" /></td>
 							<td colspan="3" id="userList">jhbdksdhjkdshfkskdjfsd</td></tr>
 					</table>
 				
