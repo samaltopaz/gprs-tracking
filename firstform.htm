@@ -77,9 +77,10 @@ document.addEventListener("deviceready", onDeviceReady, false);
 	          db.transaction(function (tx){ 
 	          	
 	          	var id = $("#id").val();
+	          	alert(id);
 	          	if (id == ''){
 	          	var unqid = new Date().getTime();
-			
+			alert("if");
 	          	//alert("INSERT INTO gps(location,start_time,cycle_length,arrival_open,arrival_close)VALUES("+str+")");
 	          //	alert("INSERT INTO gps set "+str);
 	          //alert("INSERT INTO gps(idval,location,start_time,cycle_length,arrival_open,arrival_close) VALUES ("+unqid+","+str+")");
@@ -91,9 +92,10 @@ tx.executeSql("INSERT INTO gps(idval,location,start_time,cycle_length,arrival_op
 	          	}
 	          	else
 	          	{
+	          		alert("else");
 alert("UPDATE gps SET idval=?, location=?, start_time=?, cycle_length=?, arrival_open=?, arrival_close=?  WHERE idval=? ",[unqid,str,id]);	          		
 	          	
-tx.executeSql("UPDATE gps SET idval=?, location=?, start_time=?, cycle_length=?, arrival_open=?, arrival_close=?  WHERE idval=? ",[unqid,str,id]); 
+//tx.executeSql("UPDATE gps SET idval=?, location=?, start_time=?, cycle_length=?, arrival_open=?, arrival_close=?  WHERE idval=? ",[unqid,str,id]); 
   	          	
 	          		
 	          		
