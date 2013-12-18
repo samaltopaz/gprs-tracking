@@ -93,7 +93,7 @@ tx.executeSql("INSERT INTO gps(idval,location,start_time,cycle_length,arrival_op
 	          	else
 	          	{
 	          		alert("else");
-alert("UPDATE gps SET idval=?, location=?, start_time=?, cycle_length=?, arrival_open=?, arrival_close=?  WHERE idval=? ,["+unqid+","+str+","+id+"]");	          		
+alert("UPDATE gps SET idval=?, location=?, start_time=?, cycle_length=?, arrival_open=?, arrival_close=?  WHERE idval=? ,["+id+","+str+","+id+"]");	          		
 	          	
 //tx.executeSql("UPDATE gps SET idval=?, location=?, start_time=?, cycle_length=?, arrival_open=?, arrival_close=?  WHERE idval=? ",[unqid,str,id]); 
   	          	
@@ -108,7 +108,7 @@ alert("UPDATE gps SET idval=?, location=?, start_time=?, cycle_length=?, arrival
  
  
 function queryDB(tx) {
-            tx.executeSql('SELECT * FROM gps', [], querySuccess, errorCB1);
+            tx.executeSql('SELECT * FROM gps where location="A"', [], querySuccess, errorCB1);
             
         }
 
@@ -117,16 +117,16 @@ function queryDB(tx) {
         //
         function querySuccess(tx, results) {
             var len = results.rows.length;
-            //alert("gps table: " + len + " rows found.");
-            for (var i=0; i<len; i++){
-           $('#userList').append('<tr><td>'+results.rows.item(i).location+'</td>'+'<td>'+results.rows.item(i).start_time+'</td>'
-            +'<td>'+results.rows.item(i).cycle_length+'</td>'+'<td>'+results.rows.item(i).arrival_open+'</td>'
-            +'<td>'+results.rows.item(i).arrival_close+'</td></tr>');
+            var row = results.rows.item(0);
+        		 $('#id').val(row['idval']);
+        		 $('#start_timeA').val(row['start_time']);
+        		 $('#cycle_lengthA').val(row['cycle_length']);
+        		 $('#arrival_openA').val(row['arrival_open']);
+        		 $('#arrival_closeA').val(row['arrival_close']);
+        		 
+           
             
-            $('#id').val(results.rows.item(i).idval);
-            //$('#userList').append('<li>'+results.rows.item(i).start_time+'</li>');
-
-
+           
 
             }
             
@@ -204,7 +204,7 @@ function queryDB(tx) {
 											Start Time
 									</td>
 									<td>
-											<input type="text" name="" col_val="start_time" class="textbox2 A" />
+											<input type="text" name="" col_val="start_time" class="textbox2 A" id="start_timeA" />
 									</td>
 									<td>
 											<input type="text" name="" col_val="start_time"  class="textbox2 B" />
@@ -218,7 +218,7 @@ function queryDB(tx) {
 											Cycle Length
 									</td>
 									<td>
-											<input type="text" name="" col_val="cycle_length"  class="textbox2 A" />
+											<input type="text" name="" col_val="cycle_length"  class="textbox2 A" id="cycle_lengthA" />
 									</td>
 									<td>
 											<input type="text" name="" col_val="cycle_length"  class="textbox2 B" />
@@ -232,7 +232,7 @@ function queryDB(tx) {
 											Arrival Open
 									</td>
 									<td>
-											<input type="text" name="" col_val="arrival_open"  class="textbox2 A" />
+											<input type="text" name="" col_val="arrival_open"  class="textbox2 A" id="arrival_openA"/>
 									</td>
 									<td>
 											<input type="text" name="" col_val="arrival_open"  class="textbox2 B" />
@@ -247,7 +247,7 @@ function queryDB(tx) {
 											Arrival Close
 									</td>
 									<td>
-											<input type="text" name="" col_val="arrival_close"  class="textbox2 A" />
+											<input type="text" name="" col_val="arrival_close"  class="textbox2 A" id="arrival_closeA"/>
 									</td>
 									<td>
 											<input type="text" name=""  col_val="arrival_close" class="textbox2 B" />
