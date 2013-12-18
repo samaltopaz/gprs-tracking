@@ -80,10 +80,10 @@ document.addEventListener("deviceready", onDeviceReady, false);
 alert(unqid);
 	          	//alert("INSERT INTO gps(location,start_time,cycle_length,arrival_open,arrival_close)VALUES("+str+")");
 	          //	alert("INSERT INTO gps set "+str);
-	          alert("INSERT INTO gps(idval,location,start_time,cycle_length,arrival_open,arrival_close) VALUES ('unqid',"+str+")");
-tx.executeSql("INSERT INTO gps(idval,location,start_time,cycle_length,arrival_open,arrival_close) VALUES ('unqid',"+str+")");
-tx.executeSql("INSERT INTO gps(idval,location,start_time,cycle_length,arrival_open,arrival_close) VALUES ('unqid',"+str2+")");
-tx.executeSql("INSERT INTO gps(idval,location,start_time,cycle_length,arrival_open,arrival_close) VALUES ('unqid',"+str3+")");
+	          alert("INSERT INTO gps(idval,location,start_time,cycle_length,arrival_open,arrival_close) VALUES ("+unqid+","+str+")");
+tx.executeSql("INSERT INTO gps(idval,location,start_time,cycle_length,arrival_open,arrival_close) VALUES ("+unqid+","+str+")");
+tx.executeSql("INSERT INTO gps(idval,location,start_time,cycle_length,arrival_open,arrival_close) VALUES ("+unqid+","+str2+")");
+tx.executeSql("INSERT INTO gps(idval,location,start_time,cycle_length,arrival_open,arrival_close) VALUES ("+unqid+","+str3+")");
 	          //tx.executeSql("INSERT INTO gps set "+ str2);
 	          //tx.executeSql("INSERT INTO gps set "+ str3);
 	         
