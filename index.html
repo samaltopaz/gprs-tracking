@@ -24,11 +24,11 @@ function onDeviceReady() {
   
   
         // Update every 1 seconds
-        window.setInterval(function(){
-      
+        //window.setInterval(function(){
+      var options = { frequency: 1000, enableHighAccuracy: true };
         watchID = navigator.geolocation.watchPosition(onSuccess, onError, options);
           
-        },1000);
+        //},1000);
         db.transaction(populateDB, errorCB, successCB);
         
     }
