@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Imggallery</title>
+<link href="style.css"rel="stylesheet" type="text/css" />
+<script type="text/javascript" charset="utf-8" src="cordova.js"></script>
+<script type="text/javascript" src="jquery-1.9.1.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+document.addEventListener("deviceready", onDeviceReady, false);
+     
+    var db = window.openDatabase("Database", "1.0", "gps", 200000);
+ 
+    function onDeviceReady(){
+        //Populate the databse
+        db.transaction(queryDB, errorCB, successCB);
+        
+        
+    }
+ 
+ 
+function queryDB(tx) {
+            tx.executeSql('SELECT * FROM lat_long, [], querySuccess, errorCB1);
+
+            
+        }
+
+
+        function querySuccess(tx, results){
+        
+        var len = results.rows.length;
+        $("#userList").html('');
+        for (var i=0; i<len; i++){
+            var row= results.rows.item(i);
+            var htmlData = '<li id="'+row["id"]+'"><a href="#"><h2>'+row["name"]+'</h2><p class="ui-li-aside">'+row["nickName"]+'</p></a></li>';
+            $("#userList").append(htmlData).listview('refresh');
+        }
+
+        // Transaction error callback
+        //
+        function errorCB(err) {
+            alert("Error processing SQL: "+err.message);
+        }
+    
+    function errorCB1(err)
+    {
+            alert("Error processing SQL of querySuccess: "+err.message)
+    }
+    });
+   </head>
+   <body>
+        <div id="userList">
+        </div>
+</body>
+</html>
+
