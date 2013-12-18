@@ -9,6 +9,7 @@
     // Wait for Cordova to load
     //
     document.addEventListener("deviceready", onDeviceReady, false);
+     var db = window.openDatabase("Database", "1.0", "gps", 200000);
 
     // Cordova is ready
     //
@@ -20,6 +21,8 @@ var watchID = null;
 
 
 function onDeviceReady() {
+  
+  
         // Update every 1 seconds
         window.setInterval(function(){
         var options = { frequency: 1000, enableHighAccuracy: true };
