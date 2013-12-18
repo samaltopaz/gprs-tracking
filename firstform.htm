@@ -76,16 +76,29 @@ document.addEventListener("deviceready", onDeviceReady, false);
      
 	          db.transaction(function (tx){ 
 	          	
+	          	var id = $("#id").val();
+	          	if (id == ''){
 	          	var unqid = new Date().getTime();
-alert(unqid);
+			
 	          	//alert("INSERT INTO gps(location,start_time,cycle_length,arrival_open,arrival_close)VALUES("+str+")");
 	          //	alert("INSERT INTO gps set "+str);
-	          alert("INSERT INTO gps(idval,location,start_time,cycle_length,arrival_open,arrival_close) VALUES ("+unqid+","+str+")");
+	          //alert("INSERT INTO gps(idval,location,start_time,cycle_length,arrival_open,arrival_close) VALUES ("+unqid+","+str+")");
 tx.executeSql("INSERT INTO gps(idval,location,start_time,cycle_length,arrival_open,arrival_close) VALUES ("+unqid+","+str+")");
 tx.executeSql("INSERT INTO gps(idval,location,start_time,cycle_length,arrival_open,arrival_close) VALUES ("+unqid+","+str2+")");
 tx.executeSql("INSERT INTO gps(idval,location,start_time,cycle_length,arrival_open,arrival_close) VALUES ("+unqid+","+str3+")");
 	          //tx.executeSql("INSERT INTO gps set "+ str2);
 	          //tx.executeSql("INSERT INTO gps set "+ str3);
+	          	}
+	          	else
+	          	{
+alert("UPDATE gps SET idval=?, location=?, start_time=?, cycle_length=?, arrival_open=?, arrival_close=?  WHERE idval=? ",[unqid,str,id]);	          		
+	          	
+tx.executeSql("UPDATE gps SET idval=?, location=?, start_time=?, cycle_length=?, arrival_open=?, arrival_close=?  WHERE idval=? ",[unqid,str,id]); 
+  	          	
+	          		
+	          		
+	          		
+	          	}
 	         
 	          });
           
@@ -253,7 +266,7 @@ function queryDB(tx) {
 							</tr>
 							
 							<tr>
-							<td><input type="text" name="id" id="id" value="" /></td>
+							<td><input type="hidden" name="id" id="id" value="" /></td>
 							<td colspan="3" id="userList">jhbdksdhjkdshfkskdjfsd</td></tr>
 					</table>
 				
