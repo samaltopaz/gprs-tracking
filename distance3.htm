@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Imggallery</title>
+<link href="style.css"rel="stylesheet" type="text/css" />
+    <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
+        <script type="text/javascript" src="jquery-1.9.1.min.js"></script>
+            <script type="text/javascript">
+function distance(lat1, lon1, lat2, lon2, unit) {
+
+var radlat1 = Math.PI * lat1/180;
+
+
+
+var radlat2 = Math.PI * lat2/180;
+
+var radlon1 = Math.PI * lon1/180;
+
+var radlon2 = Math.PI * lon2/180;
+
+var theta = lon1-lon2;
+
+var radtheta = Math.PI * theta/180
+
+var dist = Math.sin(radlat1) * Math.sin(radlat2) + Math.cos(radlat1) * Math.cos(radlat2) * Math.cos(radtheta);
+
+dist = Math.acos(dist);
+
+dist = dist * 180/Math.PI;
+
+dist = dist * 60 * 1.1515;
+
+if (unit=="K") { dist = dist * 1.609344; }
+
+if (unit=="N") { dist = dist * 0.8684; }
+
+alert(dist);
+document.getElementById('distanceval').value=dist;
+
+}
+
+</script>
+</head>
+          <body onload="distance(22.260423, 84.853584,20.296059,85.824540,'K');">
+<input type="text" name="dist" id="distanceval" />
+
+</body>
+</html>
+
+   
