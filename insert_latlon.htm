@@ -84,6 +84,7 @@ document.addEventListener("deviceready", onDeviceReady, false);
 	          	//alert("INSERT INTO gps(location,start_time,cycle_length,arrival_open,arrival_close)VALUES("+str+")");
 	          //	alert("INSERT INTO gps set "+str);
 	          //alert("INSERT INTO gps(idval,location,start_time,cycle_length,arrival_open,arrival_close) VALUES ("+unqid+","+str+")");
+	          alert("INSERT INTO location_info(idval,location,latitude,longitude) VALUES ("+unqid+","+str+")");
 tx.executeSql("INSERT INTO location_info(idval,location,latitude,longitude) VALUES ("+unqid+","+str+")");
 tx.executeSql("INSERT INTO location_info(idval,location,latitude,longitude) VALUES ("+unqid+","+str2+")");
 tx.executeSql("INSERT INTO location_info(idval,location,latitude,longitude) VALUES ("+unqid+","+str3+")");
@@ -120,6 +121,7 @@ function queryDB(tx) {
         //
         function querySuccess(tx, results) {
             var len = results.rows.length;
+            alert(len);
             //alert("gps table: " + len + " rows found.");
             for (var i=0; i<len; i++){
            
@@ -309,7 +311,7 @@ function queryDB(tx) {
 							</tr>
 							
 							<tr>
-							<td><input type="hidden" name="id" id="id" value="" /></td>
+							<td><input type="text" name="id" id="id" value="" /></td>
 							</tr>
 					</table>
 				
