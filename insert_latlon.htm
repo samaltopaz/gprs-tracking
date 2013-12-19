@@ -22,7 +22,7 @@ document.addEventListener("deviceready", onDeviceReady, false);
     function populateDB(tx){
         //Create the table
         //tx.executeSql('DROP TABLE IF EXISTS MyContacts');
-        tx.executeSql('CREATE TABLE IF NOT EXISTS location_info (id INTEGER PRIMARY KEY AUTOINCREMENT,location VARCHAR(50),latitude VARCHAR(50),longitude VARCHAR(50))');
+        tx.executeSql('CREATE TABLE IF NOT EXISTS location_info (id INTEGER PRIMARY KEY AUTOINCREMENT,idval VARCHAR(50),location VARCHAR(50),latitude VARCHAR(50),longitude VARCHAR(50))');
         
     }
     
