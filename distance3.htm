@@ -52,8 +52,8 @@ function queryDB(tx) {
             //$("#userList").append(htmlData).listview('refresh');
             
             
-            $('#userList2').append('<table><tr><td>last row data</td><td>'+results.rows.item(len).latitude+'</td>'+'<td>'+results.rows.item(len).longitude+'</td>'
-            +'<td>'+results.rows.item(len).timestamp+'</td></tr></table>');
+            $('#userList2').append('<table><tr><td>last row data</td><td>'+results.rows.item(len-1).latitude+'</td>'+'<td>'+results.rows.item(len-1).longitude+'</td>'
+            +'<td>'+results.rows.item(len-1).timestamp+'</td></tr></table>');
             
             
      
