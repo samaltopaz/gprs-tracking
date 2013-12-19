@@ -41,6 +41,7 @@ function queryDB(tx) {
         function querySuccess(tx, results){
         
         var len = results.rows.length;
+        alert(len);
         
           $('#userList').append('<table><tr><td>first row data</td><td>'+results.rows.item(1).latitude+'</td>'+'<td>'+results.rows.item(1).longitude+'</td>'
             +'<td>'+results.rows.item(1).timestamp+'</td></tr></table>'); 
@@ -50,8 +51,8 @@ function queryDB(tx) {
             //$("#userList").append(htmlData).listview('refresh');
             
             
-            $('#userList').append('<tr><td>last row data</td><td>'+results.rows.item(len).latitude+'</td>'+'<td>'+results.rows.item(len).longitude+'</td>'
-            +'<td>'+results.rows.item(len).timestamp+'</td></tr>');
+            $('#userList').append('<table><tr><td>last row data</td><td>'+results.rows.item(len).latitude+'</td>'+'<td>'+results.rows.item(len).longitude+'</td>'
+            +'<td>'+results.rows.item(len).timestamp+'</td></tr></table>');
             
             
      
