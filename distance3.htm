@@ -8,6 +8,7 @@
 <script type="text/javascript" src="jquery-1.9.1.min.js"></script>
 <script type="text/javascript">
 function distance(lat1, lon1, lat2, lon2, unit) {
+     alert(lat1);
 
 var radlat1 = Math.PI * lat1/180;
 
@@ -35,7 +36,6 @@ if (unit=="K") { dist = dist * 1.609344; }
 
 if (unit=="N") { dist = dist * 0.8684; }
 
-return dist;
 alert(dist);
 }
 
@@ -99,8 +99,8 @@ function queryDB(tx) {
         var lat2=result.rows.item(len-1).latitude;
         var lon2=result.rows.item(len-1).longitude;
             
-        var x=distance(lat1, lon1,lat2,lon2,'K');
-        alert(x);
+        distance(lat1, lon1,lat2,lon2,'K');
+       
    
             
      
