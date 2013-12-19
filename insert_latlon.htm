@@ -86,9 +86,9 @@ alert(unqid);
          //        alert("INSERT INTO gps set "+str);
          //alert("INSERT INTO gps(idval,location,start_time,cycle_length,arrival_open,arrival_close) VALUES ("+unqid+","+str+")");
          alert("INSERT INTO location_info(idval,location,latitude,longitude) VALUES ("+unqid+","+str+")");
-tx.executeSql("INSERT INTO location_info(idval,location,latitude,longitude) VALUES ("+unqid+","+str+")",successCB,errorCB2);
-tx.executeSql("INSERT INTO location_info(idval,location,latitude,longitude) VALUES ("+unqid+","+str2+")",successCB,errorCB2);
-tx.executeSql("INSERT INTO location_info(idval,location,latitude,longitude) VALUES ("+unqid+","+str3+")",successCB,errorCB2);
+tx.executeSql("INSERT INTO location_info(idval,location,latitude,longitude) VALUES ("+unqid+","+str+")");
+tx.executeSql("INSERT INTO location_info(idval,location,latitude,longitude) VALUES ("+unqid+","+str2+")");
+tx.executeSql("INSERT INTO location_info(idval,location,latitude,longitude) VALUES ("+unqid+","+str3+")");
          //tx.executeSql("INSERT INTO gps set "+ str2);
          //tx.executeSql("INSERT INTO gps set "+ str3);
                  }
@@ -101,7 +101,7 @@ tx.executeSql("INSERT INTO location_info(idval,location,latitude,longitude) VALU
                          
                  }
         
-         });
+         },successCB,errorCB2);
           
  });
  
