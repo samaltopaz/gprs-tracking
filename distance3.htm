@@ -90,9 +90,7 @@ function queryDB(tx) {
         
         
         
-        var x1=result.rows.item(1).latitude;
        
-        alert(x1);
         
           $('#userList').append('<table><tr><td>first row data</td><td>'+results.rows.item(1).latitude+'</td>'+'<td>'+results.rows.item(1).longitude+'</td>'
             +'<td>'+results.rows.item(1).timestamp+'</td></tr></table>'); 
@@ -106,10 +104,15 @@ function queryDB(tx) {
             +'<td>'+results.rows.item(len-1).timestamp+'</td></tr></table>');
             
             
-            
+             var lat1=results.rows.item(1).latitude;
+             var lon1=results.rows.item(1).longitude;
+             var lat2=results.rows.item(len-1).latitude;
+             var lon2=results.rows.item(len-1).longitude;
+       
+        
     
             
-        //distance(22.260423,84.853584,20.296059,85.824540,'K');
+        distance(lat1,lon1,lat2,lon2,'K');
        
    
             
