@@ -1,0 +1,359 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Imggallery</title>
+<link href="style.css"rel="stylesheet" type="text/css" />
+<script type="text/javascript" charset="utf-8" src="cordova.js"></script>
+<script type="text/javascript" src="jquery-1.9.1.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+document.addEventListener("deviceready", onDeviceReady, false);
+     
+    var db = window.openDatabase("Database", "1.0", "gps", 200000);
+ 
+    function onDeviceReady(){
+        //Populate the databse
+        db.transaction(populateDB, errorCB, successCB);
+        
+        
+    }
+    
+    function populateDB(tx){
+        //Create the table
+        //tx.executeSql('DROP TABLE IF EXISTS MyContacts');
+        tx.executeSql('CREATE TABLE IF NOT EXISTS gps (id INTEGER PRIMARY KEY AUTOINCREMENT,idval VARCHAR(50),location VARCHAR(30), start_time VARCHAR(30), cycle_length VARCHAR(30),arrival_open VARCHAR(30), arrival_close VARCHAR(30))');
+        
+    }
+    
+     function successCB() {
+          
+            alert("table created successfully");
+        }
+   function errorCB2(err)
+   {
+   	alert("sqlerror:"+err.message);
+   }
+	
+ $("#save").bind ("click", function (event){
+     
+     
+      var str="'A'";
+         $('.A').each(function(){
+          
+      var loca=($(this).val());
+      var y=($(this).attr('col_val'));
+      
+      str= str +",'"+loca+"'";
+   
+
+		  
+    		});
+     
+      var str2="'B'";
+         $('.B').each(function(){
+          
+      var locb=($(this).val());
+      var yb=($(this).attr('col_val'));
+       str2= str2 +",'"+locb+"'";
+      
+      
+   
+
+      
+    		});
+   
+    
+    var str3="'C'";
+         $('.C').each(function(){
+          
+      var locc=($(this).val());
+      var yc=($(this).attr('col_val'));
+      str3= str3 +",'"+locc+"'";
+		 });
+   
+     var db = window.openDatabase("Database", "1.0", "gps", 200000);
+     
+	          db.transaction(function (tx){ 
+	          	
+	          	var id = $("#id").val();
+	          	alert(id);
+	          	if (id == ''){
+	          	var unqid = new Date().getTime();
+			alert("if");
+	          	//alert("INSERT INTO gps(location,start_time,cycle_length,arrival_open,arrival_close)VALUES("+str+")");
+	          //	alert("INSERT INTO gps set "+str);
+	          //alert("INSERT INTO gps(idval,location,start_time,cycle_length,arrival_open,arrival_close) VALUES ("+unqid+","+str+")");
+tx.executeSql("INSERT INTO gps(idval,location,start_time,cycle_length,arrival_open,arrival_close) VALUES ("+unqid+","+str+")");
+tx.executeSql("INSERT INTO gps(idval,location,start_time,cycle_length,arrival_open,arrival_close) VALUES ("+unqid+","+str2+")");
+tx.executeSql("INSERT INTO gps(idval,location,start_time,cycle_length,arrival_open,arrival_close) VALUES ("+unqid+","+str3+")");
+	          //tx.executeSql("INSERT INTO gps set "+ str2);
+	          //tx.executeSql("INSERT INTO gps set "+ str3);
+	          	}
+	          	else
+	          	{
+	          		alert("else");
+alert("UPDATE gps SET idval=?, location=?, start_time=?, cycle_length=?, arrival_open=?, arrival_close=?  WHERE idval=? and location=? ,["+id+","+str+","+id+",'A']");	          		
+	          	
+tx.executeSql("UPDATE gps SET idval=?, location=?, start_time=?, cycle_length=?, arrival_open=?, arrival_close=?  WHERE idval=?  and  location=?,["+id+","+str+","+id+",'A']");
+tx.executeSql("UPDATE gps SET idval=?, location=?, start_time=?, cycle_length=?, arrival_open=?, arrival_close=?  WHERE idval=?  and location=?,["+id+","+str2+","+id+",'B']");
+tx.executeSql("UPDATE gps SET idval=?, location=?, start_time=?, cycle_length=?, arrival_open=?, arrival_close=?  WHERE idval=?  and location=?,["+id+","+str3+","+id+",'C']");
+  	          	
+	          		
+	          		
+	          		
+	          	}
+	         
+	          });
+          
+ });
+ 
+ 
+function queryDB(tx) {
+            tx.executeSql('SELECT * FROM gps where location="A"', [], querySuccess, errorCB1);
+            
+       
+            tx.executeSql('SELECT * FROM gps where location="B"', [], querySuccess2, errorCBB);
+            
+       
+            tx.executeSql('SELECT * FROM gps where location="C"', [], querySuccess3, errorCBC);
+            
+        }
+
+
+// Query the success callback
+        //
+        function querySuccess(tx, results) {
+            var len = results.rows.length;
+            //alert("gps table: " + len + " rows found.");
+            for (var i=0; i<len; i++){
+           
+            
+            $('#id').val(results.rows.item(i).idval);
+            
+            $('#start_timeA').val(results.rows.item(i).start_time);
+            $('#cycle_lengthA').val(results.rows.item(i).cycle_length);
+            $('#arrival_openA').val(results.rows.item(i).arrival_open);
+            $('#arrival_closeA').val(results.rows.item(i).arrival_close);
+            
+            //$('#userList').append('<li>'+results.rows.item(i).start_time+'</li>');
+
+
+
+            }
+            
+
+        }
+
+        // Transaction error callback
+        //
+        function errorCB(err) {
+            alert("Error processing SQL: "+err.message);
+        }
+    
+    function errorCB1(err)
+    {
+    	alert("Error processing SQL of querySuccess: "+err.message)
+    }
+     
+     
+     function querySuccess2(tx, results) {
+            var len = results.rows.length;
+            //alert("gps table: " + len + " rows found.");
+            for (var i=0; i<len; i++){
+           
+            
+            $('#id').val(results.rows.item(i).idval);
+            
+           $('#start_timeB').val(results.rows.item(i).start_time);
+            $('#cycle_lengthB').val(results.rows.item(i).cycle_length);
+            $('#arrival_openB').val(results.rows.item(i).arrival_open);
+            $('#arrival_closeB').val(results.rows.item(i).arrival_close);
+         
+            
+            //$('#userList').append('<li>'+results.rows.item(i).start_time+'</li>');
+
+
+
+            }
+            
+
+        }
+        
+        
+        function errorCBB(err)
+    {
+    	alert("Error processing SQL of querySuccess: "+err.message)
+    }
+     
+     
+     
+     
+     function querySuccess3(tx, results) {
+            var len = results.rows.length;
+            //alert("gps table: " + len + " rows found.");
+            for (var i=0; i<len; i++){
+           
+            
+            $('#id').val(results.rows.item(i).idval);
+            
+            $('#start_timeC').val(results.rows.item(i).start_time);
+            $('#cycle_lengthC').val(results.rows.item(i).cycle_length);
+            $('#arrival_openC').val(results.rows.item(i).arrival_open);
+            $('#arrival_closeC').val(results.rows.item(i).arrival_close);
+         
+            
+            //$('#userList').append('<li>'+results.rows.item(i).start_time+'</li>');
+
+
+
+            }
+            
+
+        }
+        
+        
+        function errorCBC(err)
+    {
+    	alert("Error processing SQL of querySuccess: "+err.message)
+    }
+     
+     
+     
+     
+     
+     $("#chk").click(function(){
+     	 var db = window.openDatabase("Database", "1.0", "gps", 200000);
+     	db.transaction(queryDB, errorCB, successCB);
+     	
+     });
+ 
+});
+        //var workPhoneNumber = $.trim($("#workPhoneNumber").val()).replace(/[^0-9-]/g, '');
+        //var emailId = $.trim($("#emailId").val());
+        //var website = $.trim($("#website").val());
+        //var happyBirthDay = $.trim($("#happyBirthDay").val());
+        //console.log(name+' '+nickName+' '+mobilePhoneNumber+' '+workPhone
+
+</script>
+
+      
+      
+</head>
+
+<body>
+	<div id="topbar">
+	<input type="button" id="chk" value="chk"/>
+			<div id="top_box">
+					<h2 style="text-align:center; text-shadow:#000000 1px">
+					Arrival Time Demo App
+					</h2>	
+					<p class="text">
+							Edit Parameters <br /> Tap any Cell to Edit
+					</p>		
+			</div>
+	</div>
+	
+	
+	<div id="contentbar">
+			<div id="content_box">
+				
+					<table id="table1" style="height:300px;">
+							<tr>
+									<td>
+											
+									</td>
+									<td align="center">
+											Location<br />
+											A
+
+									</td>
+									<td align="center">
+											Location<br />
+											B
+									</td>
+									<td align="center">
+											Location<br />
+											 C
+									</td>
+							</tr>
+							<tr>
+									<td>
+											Start Time
+									</td>
+									<td>
+											<input type="text" name="" col_val="start_time" class="textbox2 A" id="start_timeA" />
+									</td>
+									<td>
+											<input type="text" name="" col_val="start_time"  class="textbox2 B" id="start_timeB"/>
+									</td>
+									<td>
+											<input type="text" name="" col_val="start_time" class="textbox2 C" id="start_timeC"/>
+									</td>
+							</tr>
+							<tr>
+									<td>
+											Cycle Length
+									</td>
+									<td>
+											<input type="text" name="" col_val="cycle_length"  class="textbox2 A" id="cycle_lengthA"/>
+									</td>
+									<td>
+											<input type="text" name="" col_val="cycle_length"  class="textbox2 B" id="cycle_lengthB"/>
+									</td>
+									<td>
+											<input type="text" name="" col_val="cycle_length"  class="textbox2 C" id="cycle_lengthC"/>
+									</td>
+							</tr>
+							<tr>
+									<td>
+											Arrival Open
+									</td>
+									<td>
+											<input type="text" name="" col_val="arrival_open"  class="textbox2 A" id="arrival_openA"/>
+									</td>
+									<td>
+											<input type="text" name="" col_val="arrival_open"  class="textbox2 B" id="arrival_openB"/>
+									</td>
+									<td>
+											<input type="text" name="" col_val="arrival_open"  class="textbox2 C" id="arrival_openC"/>
+									</td>
+							</tr>
+							
+							<tr>
+									<td>
+											Arrival Close
+									</td>
+									<td>
+											<input type="text" name="" col_val="arrival_close"  class="textbox2 A" id="arrival_closeA"/>
+									</td>
+									<td>
+											<input type="text" name=""  col_val="arrival_close" class="textbox2 B" id="arrival_closeB"/>
+									</td>
+									<td>
+											<input type="text" name="" col_val="arrival_close" class="textbox2 C" id="arrival_closeC"/>
+									</td>
+							</tr>
+							
+							<tr>
+									<td colspan="2">
+											<input type="button" value="Cancel" class="" />
+									</td>
+									<td colspan="2">
+											<input type="button" value="Save Changes" class="" id="save"/>
+									</td>
+									
+							</tr>
+							
+							<tr>
+							<td><input type="hidden" name="id" id="id" value="" /></td>
+							</tr>
+					</table>
+				
+				
+				
+					
+			</div>
+	</div>
+</body>
+</html>
