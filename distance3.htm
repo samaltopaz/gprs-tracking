@@ -42,7 +42,7 @@ function queryDB(tx) {
         
         var len = results.rows.length;
         alert(len);
-        alert(results.rows.item(len).latitude);
+        alert(results.rows.item(len-1).latitude);
         
           $('#userList').append('<table><tr><td>first row data</td><td>'+results.rows.item(1).latitude+'</td>'+'<td>'+results.rows.item(1).longitude+'</td>'
             +'<td>'+results.rows.item(1).timestamp+'</td></tr></table>'); 
