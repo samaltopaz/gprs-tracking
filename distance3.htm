@@ -14,7 +14,7 @@ $(document).ready(function(){
      
      
      function distance(lat1, lon1, lat2, lon2, unit) {
-     alert(lat1);
+     
 
 var radlat1 = Math.PI * lat1/180;
 
@@ -42,7 +42,7 @@ if (unit=="K") { dist = dist * 1.609344; }
 
 if (unit=="N") { dist = dist * 0.8684; }
 
-alert(dist);
+return dist;
 }
 
 
@@ -110,11 +110,11 @@ function queryDB(tx) {
              var lon2=results.rows.item(len-1).longitude;
        
         
-    
-            
-        distance(lat1,lon1,lat2,lon2,'K');
-       
    
+            
+       var x= distance(lat1,lon1,lat2,lon2,'K');
+       
+   alert(x);
             
      
 }
