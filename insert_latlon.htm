@@ -22,7 +22,7 @@ document.addEventListener("deviceready", onDeviceReady, false);
     function populateDB(tx){
         //Create the table
         //tx.executeSql('DROP TABLE IF EXISTS MyContacts');
-        tx.executeSql('CREATE TABLE IF NOT EXISTS gps (id INTEGER PRIMARY KEY AUTOINCREMENT,idval VARCHAR(50),location VARCHAR(30), start_time VARCHAR(30), cycle_length VARCHAR(30),arrival_open VARCHAR(30), arrival_close VARCHAR(30))');
+        tx.executeSql('CREATE TABLE IF NOT EXISTS location_info (id INTEGER PRIMARY KEY AUTOINCREMENT,location VARCHAR(50),latitude VARCHAR(50),longitude VARCHAR(50))');
         
     }
     
@@ -42,7 +42,7 @@ document.addEventListener("deviceready", onDeviceReady, false);
          $('.A').each(function(){
           
       var loca=($(this).val());
-      var y=($(this).attr('col_val'));
+      
       
       str= str +",'"+loca+"'";
    
@@ -54,7 +54,7 @@ document.addEventListener("deviceready", onDeviceReady, false);
          $('.B').each(function(){
           
       var locb=($(this).val());
-      var yb=($(this).attr('col_val'));
+      
        str2= str2 +",'"+locb+"'";
       
       
@@ -68,7 +68,7 @@ document.addEventListener("deviceready", onDeviceReady, false);
          $('.C').each(function(){
           
       var locc=($(this).val());
-      var yc=($(this).attr('col_val'));
+      
       str3= str3 +",'"+locc+"'";
 		 });
    
@@ -84,21 +84,16 @@ document.addEventListener("deviceready", onDeviceReady, false);
 	          	//alert("INSERT INTO gps(location,start_time,cycle_length,arrival_open,arrival_close)VALUES("+str+")");
 	          //	alert("INSERT INTO gps set "+str);
 	          //alert("INSERT INTO gps(idval,location,start_time,cycle_length,arrival_open,arrival_close) VALUES ("+unqid+","+str+")");
-tx.executeSql("INSERT INTO gps(idval,location,start_time,cycle_length,arrival_open,arrival_close) VALUES ("+unqid+","+str+")");
-tx.executeSql("INSERT INTO gps(idval,location,start_time,cycle_length,arrival_open,arrival_close) VALUES ("+unqid+","+str2+")");
-tx.executeSql("INSERT INTO gps(idval,location,start_time,cycle_length,arrival_open,arrival_close) VALUES ("+unqid+","+str3+")");
+tx.executeSql("INSERT INTO location_info(idval,location,latitude,longitude) VALUES ("+unqid+","+str+")");
+tx.executeSql("INSERT INTO location_info(idval,location,latitude,longitude) VALUES ("+unqid+","+str2+")");
+tx.executeSql("INSERT INTO location_info(idval,location,latitude,longitude) VALUES ("+unqid+","+str3+")");
 	          //tx.executeSql("INSERT INTO gps set "+ str2);
 	          //tx.executeSql("INSERT INTO gps set "+ str3);
 	          	}
 	          	else
 	          	{
 	          		alert("else");
-alert("UPDATE gps SET idval=?, location=?, start_time=?, cycle_length=?, arrival_open=?, arrival_close=?  WHERE idval=? and location=? ,["+id+","+str+","+id+",'A']");	          		
-	          	
-tx.executeSql("UPDATE gps SET idval=?, location=?, start_time=?, cycle_length=?, arrival_open=?, arrival_close=?  WHERE idval=?  and  location=?,["+id+","+str+","+id+",'A']");
-tx.executeSql("UPDATE gps SET idval=?, location=?, start_time=?, cycle_length=?, arrival_open=?, arrival_close=?  WHERE idval=?  and location=?,["+id+","+str2+","+id+",'B']");
-tx.executeSql("UPDATE gps SET idval=?, location=?, start_time=?, cycle_length=?, arrival_open=?, arrival_close=?  WHERE idval=?  and location=?,["+id+","+str3+","+id+",'C']");
-  	          	
+
 	          		
 	          		
 	          		
@@ -110,13 +105,13 @@ tx.executeSql("UPDATE gps SET idval=?, location=?, start_time=?, cycle_length=?,
  
  
 function queryDB(tx) {
-            tx.executeSql('SELECT * FROM gps where location="A"', [], querySuccess, errorCB1);
+            tx.executeSql('SELECT * FROM location_info  where location="A"', [], querySuccess, errorCB1);
             
        
-            tx.executeSql('SELECT * FROM gps where location="B"', [], querySuccess2, errorCBB);
+            tx.executeSql('SELECT * FROM location_info where location="B"', [], querySuccess2, errorCBB);
             
        
-            tx.executeSql('SELECT * FROM gps where location="C"', [], querySuccess3, errorCBC);
+            tx.executeSql('SELECT * FROM location_info where location="C"', [], querySuccess3, errorCBC);
             
         }
 
@@ -131,10 +126,9 @@ function queryDB(tx) {
             
             $('#id').val(results.rows.item(i).idval);
             
-            $('#start_timeA').val(results.rows.item(i).start_time);
-            $('#cycle_lengthA').val(results.rows.item(i).cycle_length);
-            $('#arrival_openA').val(results.rows.item(i).arrival_open);
-            $('#arrival_closeA').val(results.rows.item(i).arrival_close);
+            $('#latitudeA').val(results.rows.item(i).latitude);
+            $('#longitudeA').val(results.rows.item(i).longitude);
+            
             
             //$('#userList').append('<li>'+results.rows.item(i).start_time+'</li>');
 
@@ -165,11 +159,8 @@ function queryDB(tx) {
             
             $('#id').val(results.rows.item(i).idval);
             
-           $('#start_timeB').val(results.rows.item(i).start_time);
-            $('#cycle_lengthB').val(results.rows.item(i).cycle_length);
-            $('#arrival_openB').val(results.rows.item(i).arrival_open);
-            $('#arrival_closeB').val(results.rows.item(i).arrival_close);
-         
+            $('#latitudeB').val(results.rows.item(i).latitude);
+            $('#longitudeB').val(results.rows.item(i).longitude);
             
             //$('#userList').append('<li>'+results.rows.item(i).start_time+'</li>');
 
@@ -197,10 +188,8 @@ function queryDB(tx) {
             
             $('#id').val(results.rows.item(i).idval);
             
-            $('#start_timeC').val(results.rows.item(i).start_time);
-            $('#cycle_lengthC').val(results.rows.item(i).cycle_length);
-            $('#arrival_openC').val(results.rows.item(i).arrival_open);
-            $('#arrival_closeC').val(results.rows.item(i).arrival_close);
+             $('#latitudeC').val(results.rows.item(i).latitude);
+            $('#longitudeC').val(results.rows.item(i).longitude);
          
             
             //$('#userList').append('<li>'+results.rows.item(i).start_time+'</li>');
@@ -264,76 +253,50 @@ function queryDB(tx) {
 											
 									</td>
 									<td align="center">
-											Location<br />
+											Point<br />
 											A
 
 									</td>
 									<td align="center">
-											Location<br />
+											Point<br />
 											B
 									</td>
 									<td align="center">
-											Location<br />
+											Point<br />
 											 C
 									</td>
 							</tr>
 							<tr>
 									<td>
-											Start Time
+											Latitude
 									</td>
 									<td>
-											<input type="text" name="" col_val="start_time" class="textbox2 A" id="start_timeA" />
+											<input type="text" name="" col_val="latitude" class="textbox2 A" id="latitudeA" />
 									</td>
 									<td>
-											<input type="text" name="" col_val="start_time"  class="textbox2 B" id="start_timeB"/>
+											<input type="text" name="" col_val="latitude"  class="textbox2 B" id="latitudeB"/>
 									</td>
 									<td>
-											<input type="text" name="" col_val="start_time" class="textbox2 C" id="start_timeC"/>
-									</td>
-							</tr>
-							<tr>
-									<td>
-											Cycle Length
-									</td>
-									<td>
-											<input type="text" name="" col_val="cycle_length"  class="textbox2 A" id="cycle_lengthA"/>
-									</td>
-									<td>
-											<input type="text" name="" col_val="cycle_length"  class="textbox2 B" id="cycle_lengthB"/>
-									</td>
-									<td>
-											<input type="text" name="" col_val="cycle_length"  class="textbox2 C" id="cycle_lengthC"/>
+											<input type="text" name="" col_val="latitude" class="textbox2 C" id="latitudeC"/>
 									</td>
 							</tr>
 							<tr>
 									<td>
-											Arrival Open
+										Longitude
 									</td>
 									<td>
-											<input type="text" name="" col_val="arrival_open"  class="textbox2 A" id="arrival_openA"/>
+											<input type="text" name="" col_val="longitude"  class="textbox2 A" id="longitudeA"/>
 									</td>
 									<td>
-											<input type="text" name="" col_val="arrival_open"  class="textbox2 B" id="arrival_openB"/>
+											<input type="text" name="" col_val="longitude"  class="textbox2 B" id="longitudeB"/>
 									</td>
 									<td>
-											<input type="text" name="" col_val="arrival_open"  class="textbox2 C" id="arrival_openC"/>
+											<input type="text" name="" col_val="longitude"  class="textbox2 C" id="longitudeC"/>
 									</td>
 							</tr>
 							
-							<tr>
-									<td>
-											Arrival Close
-									</td>
-									<td>
-											<input type="text" name="" col_val="arrival_close"  class="textbox2 A" id="arrival_closeA"/>
-									</td>
-									<td>
-											<input type="text" name=""  col_val="arrival_close" class="textbox2 B" id="arrival_closeB"/>
-									</td>
-									<td>
-											<input type="text" name="" col_val="arrival_close" class="textbox2 C" id="arrival_closeC"/>
-									</td>
-							</tr>
+							
+							
 							
 							<tr>
 									<td colspan="2">
