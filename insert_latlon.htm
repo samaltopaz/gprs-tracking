@@ -32,9 +32,9 @@ document.addEventListener("deviceready", onDeviceReady, false);
         }
    function errorCB2(err)
    {
-   	alert("sqlerror:"+err.message);
+           alert("sqlerror:"+err.message);
    }
-	
+        
  $("#save").bind ("click", function (event){
      
      
@@ -47,8 +47,8 @@ document.addEventListener("deviceready", onDeviceReady, false);
       str= str +",'"+loca+"'";
    
 
-		  
-    		});
+                
+                    });
      
       var str2="'B'";
          $('.B').each(function(){
@@ -61,7 +61,7 @@ document.addEventListener("deviceready", onDeviceReady, false);
    
 
       
-    		});
+                    });
    
     
     var str3="'C'";
@@ -70,43 +70,44 @@ document.addEventListener("deviceready", onDeviceReady, false);
       var locc=($(this).val());
       
       str3= str3 +",'"+locc+"'";
-		 });
+                 });
    
      var db = window.openDatabase("Database", "1.0", "gps", 200000);
      
-	          db.transaction(function (tx){ 
-	          	
-	          	var id = $("#id").val();
-	          	alert(id);
-	          	if (id == ''){
-	          	var unqid = new Date().getTime();
-			alert("if");
-	          	//alert("INSERT INTO gps(location,start_time,cycle_length,arrival_open,arrival_close)VALUES("+str+")");
-	          //	alert("INSERT INTO gps set "+str);
-	          //alert("INSERT INTO gps(idval,location,start_time,cycle_length,arrival_open,arrival_close) VALUES ("+unqid+","+str+")");
-	          alert("INSERT INTO location_info(idval,location,latitude,longitude) VALUES ("+unqid+","+str+")");
-tx.executeSql("INSERT INTO location_info(idval,location,latitude,longitude) VALUES ("+unqid+","+str+")");
-tx.executeSql("INSERT INTO location_info(idval,location,latitude,longitude) VALUES ("+unqid+","+str2+")");
-tx.executeSql("INSERT INTO location_info(idval,location,latitude,longitude) VALUES ("+unqid+","+str3+")");
-	          //tx.executeSql("INSERT INTO gps set "+ str2);
-	          //tx.executeSql("INSERT INTO gps set "+ str3);
-	          	}
-	          	else
-	          	{
-	          		alert("else");
+         db.transaction(function (tx){
+                 
+                 var id = $("#id").val();
+                 alert(id);
+                 if (id == ''){
+                 var unqid = new Date().getTime();
+                        alert("if");
+alert(unqid);
+                 //alert("INSERT INTO gps(location,start_time,cycle_length,arrival_open,arrival_close)VALUES("+str+")");
+         //        alert("INSERT INTO gps set "+str);
+         //alert("INSERT INTO gps(idval,location,start_time,cycle_length,arrival_open,arrival_close) VALUES ("+unqid+","+str+")");
+         alert("INSERT INTO location_info(idval,location,latitude,longitude) VALUES ("+unqid+","+str+")");
+tx.executeSql("INSERT INTO location_info(idval,location,latitude,longitude) VALUES ("+unqid+","+str+")",successCB,errorCB2);
+tx.executeSql("INSERT INTO location_info(idval,location,latitude,longitude) VALUES ("+unqid+","+str2+")",successCB,errorCB2);
+tx.executeSql("INSERT INTO location_info(idval,location,latitude,longitude) VALUES ("+unqid+","+str3+")",successCB,errorCB2);
+         //tx.executeSql("INSERT INTO gps set "+ str2);
+         //tx.executeSql("INSERT INTO gps set "+ str3);
+                 }
+                 else
+                 {
+                         alert("else");
 
-	          		
-	          		
-	          		
-	          	}
-	         
-	          });
+                         
+                         
+                         
+                 }
+        
+         });
           
  });
  
  
 function queryDB(tx) {
-            tx.executeSql('SELECT * FROM location_info  where location="A"', [], querySuccess, errorCB1);
+            tx.executeSql('SELECT * FROM location_info where location="A"', [], querySuccess, errorCB1);
             
        
             tx.executeSql('SELECT * FROM location_info where location="B"', [], querySuccess2, errorCBB);
@@ -149,13 +150,13 @@ function queryDB(tx) {
     
     function errorCB1(err)
     {
-    	alert("Error processing SQL of querySuccess: "+err.message)
+            alert("Error processing SQL of querySuccess: "+err.message)
     }
      
      
      function querySuccess2(tx, results) {
             var len = results.rows.length;
-            //alert("gps table: " + len + " rows found.");
+            alert(len);
             for (var i=0; i<len; i++){
            
             
@@ -176,7 +177,7 @@ function queryDB(tx) {
         
         function errorCBB(err)
     {
-    	alert("Error processing SQL of querySuccess: "+err.message)
+            alert("Error processing SQL of querySuccess: "+err.message)
     }
      
      
@@ -184,7 +185,7 @@ function queryDB(tx) {
      
      function querySuccess3(tx, results) {
             var len = results.rows.length;
-            //alert("gps table: " + len + " rows found.");
+         alert(len);
             for (var i=0; i<len; i++){
            
             
@@ -206,7 +207,7 @@ function queryDB(tx) {
         
         function errorCBC(err)
     {
-    	alert("Error processing SQL of querySuccess: "+err.message)
+            alert("Error processing SQL of querySuccess: "+err.message)
     }
      
      
@@ -214,9 +215,9 @@ function queryDB(tx) {
      
      
      $("#chk").click(function(){
-     	 var db = window.openDatabase("Database", "1.0", "gps", 200000);
-     	db.transaction(queryDB, errorCB, successCB);
-     	
+              var db = window.openDatabase("Database", "1.0", "gps", 200000);
+             db.transaction(queryDB, errorCB, successCB);
+             
      });
  
 });
@@ -233,92 +234,92 @@ function queryDB(tx) {
 </head>
 
 <body>
-	<div id="topbar">
-	<input type="button" id="chk" value="chk"/>
-			<div id="top_box">
-					<h2 style="text-align:center; text-shadow:#000000 1px">
-					Arrival Time Demo App
-					</h2>	
-					<p class="text">
-							Edit Parameters <br /> Tap any Cell to Edit
-					</p>		
-			</div>
-	</div>
-	
-	
-	<div id="contentbar">
-			<div id="content_box">
-				
-					<table id="table1" style="height:300px;">
-							<tr>
-									<td>
-											
-									</td>
-									<td align="center">
-											Point<br />
-											A
+        <div id="topbar">
+        <input type="button" id="chk" value="chk"/>
+                        <div id="top_box">
+                                        <h2 style="text-align:center; text-shadow:#000000 1px">
+                                        Arrival Time Demo App
+                                        </h2>        
+                                        <p class="text">
+                                                        Edit Parameters <br /> Tap any Cell to Edit
+                                        </p>                
+                        </div>
+        </div>
+        
+        
+        <div id="contentbar">
+                        <div id="content_box">
+                                
+                                        <table id="table1" style="height:300px;">
+                                                        <tr>
+                                                                        <td>
+                                                                                        
+                                                                        </td>
+                                                                        <td align="center">
+                                                                                        Point<br />
+                                                                                        A
 
-									</td>
-									<td align="center">
-											Point<br />
-											B
-									</td>
-									<td align="center">
-											Point<br />
-											 C
-									</td>
-							</tr>
-							<tr>
-									<td>
-											Latitude
-									</td>
-									<td>
-											<input type="text" name="" col_val="latitude" class="textbox2 A" id="latitudeA" />
-									</td>
-									<td>
-											<input type="text" name="" col_val="latitude"  class="textbox2 B" id="latitudeB"/>
-									</td>
-									<td>
-											<input type="text" name="" col_val="latitude" class="textbox2 C" id="latitudeC"/>
-									</td>
-							</tr>
-							<tr>
-									<td>
-										Longitude
-									</td>
-									<td>
-											<input type="text" name="" col_val="longitude"  class="textbox2 A" id="longitudeA"/>
-									</td>
-									<td>
-											<input type="text" name="" col_val="longitude"  class="textbox2 B" id="longitudeB"/>
-									</td>
-									<td>
-											<input type="text" name="" col_val="longitude"  class="textbox2 C" id="longitudeC"/>
-									</td>
-							</tr>
-							
-							
-							
-							
-							<tr>
-									<td colspan="2">
-											<input type="button" value="Cancel" class="" />
-									</td>
-									<td colspan="2">
-											<input type="button" value="Save Changes" class="" id="save"/>
-									</td>
-									
-							</tr>
-							
-							<tr>
-							<td><input type="text" name="id" id="id" value="" /></td>
-							</tr>
-					</table>
-				
-				
-				
-					
-			</div>
-	</div>
+                                                                        </td>
+                                                                        <td align="center">
+                                                                                        Point<br />
+                                                                                        B
+                                                                        </td>
+                                                                        <td align="center">
+                                                                                        Point<br />
+                                                                                         C
+                                                                        </td>
+                                                        </tr>
+                                                        <tr>
+                                                                        <td>
+                                                                                        Latitude
+                                                                        </td>
+                                                                        <td>
+                                                                                        <input type="text" name="" col_val="latitude" class="textbox2 A" id="latitudeA" />
+                                                                        </td>
+                                                                        <td>
+                                                                                        <input type="text" name="" col_val="latitude" class="textbox2 B" id="latitudeB"/>
+                                                                        </td>
+                                                                        <td>
+                                                                                        <input type="text" name="" col_val="latitude" class="textbox2 C" id="latitudeC"/>
+                                                                        </td>
+                                                        </tr>
+                                                        <tr>
+                                                                        <td>
+                                                                                Longitude
+                                                                        </td>
+                                                                        <td>
+                                                                                        <input type="text" name="" col_val="longitude" class="textbox2 A" id="longitudeA"/>
+                                                                        </td>
+                                                                        <td>
+                                                                                        <input type="text" name="" col_val="longitude" class="textbox2 B" id="longitudeB"/>
+                                                                        </td>
+                                                                        <td>
+                                                                                        <input type="text" name="" col_val="longitude" class="textbox2 C" id="longitudeC"/>
+                                                                        </td>
+                                                        </tr>
+                                                        
+                                                        
+                                                        
+                                                        
+                                                        <tr>
+                                                                        <td colspan="2">
+                                                                                        <input type="button" value="Cancel" class="" />
+                                                                        </td>
+                                                                        <td colspan="2">
+                                                                                        <input type="button" value="Save Changes" class="" id="save"/>
+                                                                        </td>
+                                                                        
+                                                        </tr>
+                                                        
+                                                        <tr>
+                                                        <td><input type="text" name="id" id="id" value="" /></td>
+                                                        </tr>
+                                        </table>
+                                
+                                
+                                
+                                        
+                        </div>
+        </div>
 </body>
 </html>
