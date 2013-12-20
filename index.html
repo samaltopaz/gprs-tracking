@@ -4,6 +4,7 @@
     <title>Device Properties Example</title>
 
     <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
+    <script type="text/javascript" src="jquery-1.9.1.min.js"></script>
     <script type="text/javascript" charset="utf-8">
 
     // Wait for Cordova to load
@@ -116,6 +117,7 @@ tx.executeSql("INSERT INTO lat_long(latitude,longitude,altitude,accuracy,altitud
 
 
    $("#chk").click(function(){
+     alert(3);
               var db = window.openDatabase("Database", "1.0", "gps", 200000);
              db.transaction(queryDB, errorCB1, successCB1);
              
