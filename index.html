@@ -39,7 +39,7 @@ function onDeviceReady() {
     function populateDB(tx){
         //Create the table
         //tx.executeSql('DROP TABLE IF EXISTS MyContacts');
-        tx.executeSql('CREATE TABLE IF NOT EXISTS lat_long (id INTEGER PRIMARY KEY AUTOINCREMENT,latitude VARCHAR(80),longitude VARCHAR(80),altitude VARCHAR(30), Accuracy VARCHAR(30),altitudeaccuracy VARCHAR(30),heading VARCHAR(30),speed VARCHAR(30),timestamp VARCHAR(30))',queryDB,errorCB);
+        tx.executeSql('CREATE TABLE IF NOT EXISTS lat_long (id INTEGER PRIMARY KEY AUTOINCREMENT,latitude VARCHAR(80),longitude VARCHAR(80),altitude VARCHAR(30), Accuracy VARCHAR(30),altitudeaccuracy VARCHAR(30),heading VARCHAR(30),speed VARCHAR(30),timestamp VARCHAR(30))');
         
     }
     function successCB() {
@@ -115,7 +115,20 @@ tx.executeSql("INSERT INTO lat_long(latitude,longitude,altitude,accuracy,altitud
 
 
 
-        
+   $("#chk").click(function(){
+              var db = window.openDatabase("Database", "1.0", "gps", 200000);
+             db.transaction(queryDB, errorCB1, successCB1);
+             
+     });   
+     
+      function successCB1() {
+          
+            alert("success");
+        }
+   function errorCB1()
+   {
+           alert("error");
+   }
                  
                  //var lat1=position.coords.latitude;
                  //var lon1=position.coords.longitude;
@@ -138,6 +151,7 @@ tx.executeSql("INSERT INTO lat_long(latitude,longitude,altitude,accuracy,altitud
     </script>
   </head>
   <body>
+  <input type="button" id="chk" value="chk"/>
     <p id="geolocation">Finding geolocation...</p>
     <a href="firstform.htm">Next</a>
     <a href="distance.htm">Distance</a>
