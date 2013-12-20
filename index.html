@@ -82,6 +82,27 @@ tx.executeSql("INSERT INTO lat_long(latitude,longitude,altitude,accuracy,altitud
  alert(1);
      alert('SELECT * FROM location_info');
             tx.executeSql('SELECT * FROM location_info where location="A"', [], querySuccess, errorCBB);
+            
+            
+            
+            
+function querySuccess(tx, results){
+        
+        var len = results.rows.length;
+        
+      alert(len);
+          
+        for (var i=0; i<len; i++){
+            //var row= results.rows.item(i);
+            //var htmlData = '<table><tr><td>'+results.rows.item(i).latitude+'</td><td>'+results.rows.item(i).longitude+'</td><td>'+results.rows.item(i).timestamp+'</td></tr></table>';
+            //$("#userList").append(htmlData).listview('refresh');
+               lat2=results.rows.item(i).latitude;
+               lon2=results.rows.item(i).longitude;
+               alert(lat2);
+           
+            
+        }
+}
 
         
                  });
@@ -104,24 +125,7 @@ tx.executeSql("INSERT INTO lat_long(latitude,longitude,altitude,accuracy,altitud
         }
         
         
-        function querySuccess(tx, results){
         
-        var len = results.rows.length;
-        
-      alert(len);
-          
-        for (var i=0; i<len; i++){
-            //var row= results.rows.item(i);
-            //var htmlData = '<table><tr><td>'+results.rows.item(i).latitude+'</td><td>'+results.rows.item(i).longitude+'</td><td>'+results.rows.item(i).timestamp+'</td></tr></table>';
-            //$("#userList").append(htmlData).listview('refresh');
-               lat2=results.rows.item(i).latitude;
-               lon2=results.rows.item(i).longitude;
-               alert(lat2);
-           
-            
-        }
-}
-
 
 
    $("#chk").click(function(){
