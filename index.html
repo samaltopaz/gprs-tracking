@@ -85,6 +85,12 @@ tx.executeSql("INSERT INTO lat_long(latitude,longitude,altitude,accuracy,altitud
                  
                  
     }
+    
+    
+     function onError(error) {
+     alert('code: ' + error.code + '\n' +
+     'message: ' + error.message + '\n');
+    }
                  
                  
         function queryDB(tx) {
@@ -138,10 +144,7 @@ tx.executeSql("INSERT INTO lat_long(latitude,longitude,altitude,accuracy,altitud
 
     // onError Callback receives a PositionError object
     //
-    function onError(error) {
-     alert('code: ' + error.code + '\n' +
-     'message: ' + error.message + '\n');
-    }
+   
 
     </script>
   </head>
