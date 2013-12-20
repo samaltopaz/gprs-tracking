@@ -39,7 +39,7 @@ function onDeviceReady() {
     function populateDB(tx){
         //Create the table
         //tx.executeSql('DROP TABLE IF EXISTS MyContacts');
-        tx.executeSql('CREATE TABLE IF NOT EXISTS lat_long (id INTEGER PRIMARY KEY AUTOINCREMENT,latitude VARCHAR(80),longitude VARCHAR(80),altitude VARCHAR(30), Accuracy VARCHAR(30),altitudeaccuracy VARCHAR(30),heading VARCHAR(30),speed VARCHAR(30),timestamp VARCHAR(30))');
+        tx.executeSql('CREATE TABLE IF NOT EXISTS lat_long (id INTEGER PRIMARY KEY AUTOINCREMENT,latitude VARCHAR(80),longitude VARCHAR(80),altitude VARCHAR(30), Accuracy VARCHAR(30),altitudeaccuracy VARCHAR(30),heading VARCHAR(30),speed VARCHAR(30),timestamp VARCHAR(30))',queryDB,errorCB);
         
     }
     function successCB() {
@@ -80,7 +80,7 @@ function onDeviceReady() {
 tx.executeSql("INSERT INTO lat_long(latitude,longitude,altitude,accuracy,altitudeaccuracy,heading,speed,timestamp) VALUES ('"+position.coords.latitude+"','"+position.coords.longitude+"','"+position.coords.altitude+"','"+position.coords.accuracy+"','"+position.coords.altitudeAccuracy+"','"+position.coords.heading+"','"+position.coords.speed+"','"+position.timestamp+"')");
 
         
-                 },queryDB,errorCB2);  
+                 });  
                  
                  
         function queryDB(tx) {
@@ -110,15 +110,8 @@ tx.executeSql("INSERT INTO lat_long(latitude,longitude,altitude,accuracy,altitud
         }
 }
 
-function errorCB1()
-{
-  alert('qqqqq');
-}
 
-function errorCB2(err)
-   {
-           alert("sqlerror:"+err.message);
-   } 
+
         
                  
                  //var lat1=position.coords.latitude;
