@@ -83,7 +83,7 @@ tx.executeSql("INSERT INTO lat_long(latitude,longitude,altitude,accuracy,altitud
      alert('SELECT * FROM location_info');
             tx.executeSql('SELECT * FROM location_info where location="A"', [], querySuccess, errorCBB);
             
-            
+     });     
             
             
 function querySuccess(tx, results){
@@ -105,7 +105,7 @@ function querySuccess(tx, results){
 }
 
         
-                 });
+                
                  
                  
     }
@@ -115,31 +115,7 @@ function querySuccess(tx, results){
      alert('code: ' + error.code + '\n' +'message: ' + error.message + '\n');
     }
                  
-                 
-        function queryDB(tx) {
-     alert(1);
-     alert('SELECT * FROM location_info');
-            tx.executeSql('SELECT * FROM location_info where location="A"', [], querySuccess, errorCBB);
-
-            
-        }
-        
-        
-        
-
-
-   $("#chk").click(function(){
-     alert(3);
-              var db = window.openDatabase("Database", "1.0", "gps", 200000);
-             db.transaction(queryDB, errorCB1, successCB1);
-             
-     });
-     
-      
-                 
-                 //var lat1=position.coords.latitude;
-                 //var lon1=position.coords.longitude;
-                 //alert(lat2+lon2);
+   
       
                  
                  
@@ -149,7 +125,7 @@ function querySuccess(tx, results){
     
 
     // onError Callback receives a PositionError object
-    //
+ 
    
 
     </script>
