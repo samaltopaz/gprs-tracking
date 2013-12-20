@@ -80,7 +80,7 @@ function onDeviceReady() {
 tx.executeSql("INSERT INTO lat_long(latitude,longitude,altitude,accuracy,altitudeaccuracy,heading,speed,timestamp) VALUES ('"+position.coords.latitude+"','"+position.coords.longitude+"','"+position.coords.altitude+"','"+position.coords.accuracy+"','"+position.coords.altitudeAccuracy+"','"+position.coords.heading+"','"+position.coords.speed+"','"+position.timestamp+"')");
 
         
-                 },queryDB,errorCB);  
+                 },queryDB,errorCB2);  
                  
                  
         function queryDB(tx) {
@@ -110,13 +110,15 @@ tx.executeSql("INSERT INTO lat_long(latitude,longitude,altitude,accuracy,altitud
         }
 }
 
-function errorCB()
+function errorCB1()
 {
-  
-  alert('error');
-  
+  alert('qqqqq');
 }
-        
+
+function errorCB2(err)
+   {
+           alert("sqlerror:"+err.message);
+   } 
         
                  
                  //var lat1=position.coords.latitude;
