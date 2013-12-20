@@ -98,7 +98,11 @@ function querySuccess(tx, results){
             //$("#userList").append(htmlData).listview('refresh');
                lat2=results.rows.item(i).latitude;
                lon2=results.rows.item(i).longitude;
+               lat1=position.coords.latitude;
+               alert(lat1);
                alert(lat2);
+               var dis=lat2-lat1;
+               alert(dis);
            
             
         }
