@@ -90,7 +90,7 @@ tx.executeSql("INSERT INTO lat_long(latitude,longitude,altitude,accuracy,altitud
         function queryDB(tx) {
      alert(1);
      alert('SELECT * FROM location_info');
-            tx.executeSql('SELECT * FROM location_info where location="A"', [], querySuccess, errorCB1);
+            tx.executeSql('SELECT * FROM location_info where location="A"', [], querySuccess, errorCBB);
 
             
         }
@@ -145,10 +145,10 @@ tx.executeSql("INSERT INTO lat_long(latitude,longitude,altitude,accuracy,altitud
 
     // onError Callback receives a PositionError object
     //
-    function onError(error) {
-        alert('code: '    + error.code    + '\n' +
-              'message: ' + error.message + '\n');
-    }
+    //function onError(error) {
+     //   alert('code: '    + error.code    + '\n' +
+    //          'message: ' + error.message + '\n');
+    //}
 
     </script>
   </head>
